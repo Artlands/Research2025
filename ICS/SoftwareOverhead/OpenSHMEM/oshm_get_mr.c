@@ -62,10 +62,7 @@ int main(int argc, char **argv) {
             gettimeofday(&start, NULL);
 
             // PE 0 sends data to PE 1
-            shmem_putmem(recv_buf, send_buf, msg_size, 1);
-
-            // Wait for completion
-            shmem_quiet();
+            shmem_getmem(recv_buf, send_buf, msg_size, 1);
 
             gettimeofday(&end, NULL);
 
@@ -78,7 +75,7 @@ int main(int argc, char **argv) {
     if (me == 0) {
         double avg_time = total_time / runs; // Average time per run
         double rate = (msg_size / (1024.0 * 1024.0)) / avg_time; // Rate in MB/s
-        printf("Put Message Size: %zu bytes, Average Time: %.6f s, Rate: %.2f MB/s\n",
+        printf("Get Message Size: %zu bytes, Average Time: %.6f s, Rate: %.2f MB/s\n",
                msg_size, avg_time, rate);
     }
 

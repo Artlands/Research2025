@@ -2,31 +2,35 @@
 CC = shmemcc
 CFLAGS = -O3 -Wall
 
-# Target executable
-TARGET = oshm_put_mr.exe
-
 # Source files
-SRC = oshm_put_mr.c
+SRCS = $(wildcard *.c)
+TARGETS = $(SRCS:.c=.exe)
 
 # Default target
-all: $(TARGET)
+all: $(TARGETS)
 
 # Build target
-$(TARGET): $(SRC)
+$(TARGETS): %.exe: %.c
 	$(CC) $(CFLAGS) -o $@ $<
 
 # Clean up build files
 clean:
-	rm -f $(TARGET)
+	rm -f $(TARGETS)
 
-# Run the benchmark (example with 1024 bytes)
-run: $(TARGET)
-	oshrun -np 2 ./$(TARGET) 1024
+# Run all targets with 1024 bytes (example)
+run: $(TARGETS)
+	@for target in $(TARGETS); do \
+		echo "Running $$target with message size 1024"; \
+		oshrun -np 2 $$target 1024; \
+	done
 
 # Run with a user-defined message size. Example: make run-msg-size SIZE=1024
-run-msg-size: $(TARGET)
+run-msg-size: $(TARGETS)
 	@if [ -z "$(SIZE)" ]; then \
 	  echo "Usage: make run-msg-size SIZE=<message_size_in_bytes>"; \
 	else \
-	  oshrun -np 2 ./$(TARGET) $(SIZE); \
+	  for target in $(TARGETS); do \
+	    echo "Running $$target with message size $(SIZE)"; \
+	    oshrun -np 2 $$target $(SIZE); \
+	  done; \
 	fi
