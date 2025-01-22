@@ -17,7 +17,7 @@ MESSAGE_SIZE=${MESSAGE_SIZES[$SLURM_ARRAY_TASK_ID]}
 export PRTE_MCA_plm_slurm_disable_warning=true
 
 # Profile with UCX
-UCX_PROFILE_MODE=log,accum UCX_PROFILE_FILE=./results/ucx_simple_$MESSAGE_SIZE.prof \
+UCX_PROFILE_MODE=accum UCX_PROFILE_FILE=./results/ucx_simple_$MESSAGE_SIZE.prof \
   oshrun -np 2 --map-by ppr:1:node ./oshm_get_mr.exe $MESSAGE_SIZE
 
 ucx_read_profile ./results/ucx_simple_$MESSAGE_SIZE.prof > ./results/ucx_simple_$MESSAGE_SIZE.txt

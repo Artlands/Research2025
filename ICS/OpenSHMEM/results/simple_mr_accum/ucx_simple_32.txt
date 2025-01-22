@@ -1,0 +1,55 @@
+
+   ucs lib : /home/li29729/local/ucx/lib/libucs.so.0
+   host    : cpu-23-49
+   command : ./oshm_get_mr.exe 32 
+   pid     : 128774
+   version : 3
+   env     : UCX_WARN_UNUSED_ENV_VARS=n UCX_PROFILE_FILE=./results/ucx_simple_32.prof UCX_PROFILE_MODE=accum 
+   threads : 2  (showing threads 1,2)
+
+                               NAME    AVG (usec)  TOTAL (usec)      %OVERALL        COUNT               FILE:LINE   FUNCTION                            THREADS
+                         ibv_reg_mr      2418.094     159594.22         8.641           66            ib_md.c:477    uct_ib_reg_mr                       1,2          
+                   ibv_create_qp_ex      6121.061      91815.92         8.487           15         ib_iface.c:1176   uct_ib_iface_create_qp              1            
+           ucs_rcache_create_region     45060.979      90121.96         8.330            2           rcache.c:1111   ucs_rcache_get                      1            
+                            mem_reg     45049.944      90099.89         8.328            2           rcache.c:1019   ucs_rcache_create_region            1            
+                       ibv_dereg_mr       954.871      80209.21         7.414           84            ib_md.c:515    uct_ib_dereg_mr                     1            
+           uct_iface_mp_chunk_alloc      2520.105      75603.15         4.093           30          uct_mem.c:448    uct_iface_mp_chunk_alloc            1,2          
+                   devx_create_mkey       254.700      14263.21         1.318           56     ib_mlx5dv_md.c:91     uct_ib_mlx5_devx_reg_ksm            1            
+                          mem_dereg      6152.143      12304.29         1.137            2           rcache.c:433    ucs_mem_region_destroy_internal     1            
+         uct_iface_mp_chunk_release       290.130       8703.91         0.805           30          uct_mem.c:479    uct_iface_mp_chunk_release          1            
+                      ibv_reg_dm_mr       248.111       4466.00         0.413           18            ib_md.c:466    uct_ib_reg_mr                       1            
+    uct_ib_mlx5_devx_reg_atomic_key       206.096       4121.93         0.381           20     ib_mlx5dv_md.c:515    uct_ib_mlx5_devx_reg_atomic_key     1            
+                   ibv_create_qp_ex       400.736       2003.68         0.185            5          ud_mlx5.c:945    uct_ud_mlx5dv_calc_tx_wqe_ratio     1            
+                       ibv_alloc_dm        80.724       1453.03         0.134           18     ib_mlx5dv_md.c:1992   uct_ib_mlx5_devx_device_mem_alloc   1            
+                        ibv_free_dm        63.996       1151.92         0.106           18     ib_mlx5dv_md.c:2079   uct_ib_mlx5_devx_device_mem_free    1            
+                 ucp_rkey_pack_memh       329.305        658.61         0.061            2         ucp_rkey.c:128    ucp_rkey_pack_memh                  1            
+        ucp_ep_rkey_unpack_internal       154.993        619.97         0.057            4         ucp_rkey.c:796    ucp_ep_rkey_unpack_internal         1            
+             ucp_rkey_proto_resolve       145.826        583.31         0.054            4         ucp_rkey.c:752    ucp_rkey_proto_resolve              1            
+             ucp_eager_only_handler        10.823        519.51         0.048           48        eager_rcv.c:138    ucp_eager_only_handler              1            
+              uct_sysv_rkey_release       162.120        162.12         0.015            1          mm_sysv.c:190    uct_sysv_rkey_release               1            
+                   ucp_tag_send_nbx         0.947         39.78         0.004           42         tag_send.c:231    ucp_tag_send_nbx                    1            
+               uct_sysv_rkey_unpack        28.251         28.25         0.003            1          mm_sysv.c:171    uct_sysv_rkey_unpack                1            
+                ucp_worker_flush_nb         4.449         26.70         0.002            6            flush.c:643    ucp_worker_flush_nb                 1            
+               ucp_worker_flush_nbx         3.783         22.70         0.002            6            flush.c:654    ucp_worker_flush_nbx                1            
+                    ucp_tag_send_nb         5.129         20.52         0.002            4         tag_send.c:179    ucp_tag_send_nb                     1            
+                   ucp_tag_recv_nbx         0.310         19.82         0.002           64         tag_recv.c:224    ucp_tag_recv_nbx                    1            
+                ucp_tag_send_inline         3.208         12.83         0.001            4         tag_send.c:266    ucp_tag_send_nbx_inner              1            
+                ucp_tag_send_inline         0.293         11.14         0.001           38         tag_send.c:257    ucp_tag_send_nbx_inner              1            
+                    ucp_tag_recv_nb         0.550         11.00         0.001           20         tag_recv.c:207    ucp_tag_recv_nb                     1            
+                 ucp_request_cancel         0.447          7.15         0.001           16      ucp_request.c:249    ucp_request_cancel                  1            
+           ucs_rcache_check_overlap         2.680          5.36         0.000            2           rcache.c:955    ucs_rcache_create_region            1            
+           ucs_rcache_lookup_unsafe         2.194          4.39         0.000            2         ucp_mm.inl:58     ucp_memh_get                        1            
+                 ucs_pgtable_insert         2.119          4.24         0.000            2           rcache.c:988    ucs_rcache_create_region            1            
+                   ucp_request_free         0.060          4.05         0.000           67      ucp_request.c:236    ucp_request_free                    1            
+                      memcpy_unpack         0.060          2.87         0.000           48               dt.h:83     ucp_memcpy_unpack                   1            
+                 ucs_pgtable_lookup         2.394          2.39         0.000            1         rcache.inl:65     ucs_rcache_lookup_unsafe            1            
+                   ucp_request_send         0.744          2.23         0.000            3   proto_common.inl:250    ucp_proto_request_send_op_common    1            
+                 ucs_pgtable_lookup         1.202          1.20         0.000            1           rcache.c:1088   ucs_rcache_get                      1            
+             ucp_datatype_iter_init         0.304          0.91         0.000            3   proto_common.inl:287    ucp_proto_request_send_op           1            
+     ucp_proto_request_lookup_proto         0.277          0.83         0.000            3   proto_common.inl:242    ucp_proto_request_send_op_common    1            
+                         eager_recv           n/a           n/a           n/a           46        eager_rcv.c:28     ucp_eager_common_matched            1            
+                  complete_tag_recv           n/a           n/a           n/a           62    ucp_request.inl:266    ucp_request_complete_tag_recv       1            
+                      complete_send           n/a           n/a           n/a            4    ucp_request.inl:250    ucp_request_complete_send           1            
+                   eager_only_match           n/a           n/a           n/a            2         tag_recv.c:81     ucp_tag_recv_common                 1            
+              complete_imm_tag_recv           n/a           n/a           n/a            2         tag_recv.c:103    ucp_tag_recv_common                 1            
+
