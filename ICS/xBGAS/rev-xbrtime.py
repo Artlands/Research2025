@@ -45,16 +45,6 @@ CLOCK = "2.5GHz"
 MEMSIZE = 1024*1024*1024
 SHARED_MEM_SIZE = 1024*1024*16
 
-# lsq_params = {
-#   "max_loads" : "512",
-#   "max_stores" : "512",
-#   "max_flush": "512",
-#   "max_llsc" : "512",
-#   "max_readlock" : "512",
-#   "max_writeunlock" : "512",
-#   "ops_per_cycle" : "4",
-# }
-
 memctrl_params = {
   "clock": CLOCK,
   "addr_range_start": 0,
@@ -64,13 +54,24 @@ memctrl_params = {
 
 l1cache_params = {
   "access_latency_cycles" : "4",
-  "cache_frequency" : "2 Ghz",
+  "cache_frequency" : CLOCK,
   "replacement_policy" : "lru",
   "coherence_protocol" : "MESI",
   "associativity" : "4",
   "cache_line_size" : "64",
   "L1" : "1",
   "cache_size" : "16KiB"
+}
+
+l2cache_params = {
+  "access_latency_cycles" : "8",
+  "cache_frequency" : CLOCK,
+  "replacement_policy" : "lru",
+  "coherence_protocol" : "MESI",
+  "associativity" : "8",
+  "cache_line_size" : "64",
+  "L1" : "0",  # Not an L1
+  "cache_size" : "128KiB"
 }
 
 mem_params = {
@@ -119,7 +120,7 @@ for i in range(0, NPES):
   })
   # print("Created xBGAS CPU component " + str(i) + ": " + xbgas_cpu.getFullName())
   
-  xbgas_cpu.enableAllStatistics()
+  # xbgas_cpu.enableAllStatistics()
   
   # Setup the memory controllers
   lsq = xbgas_cpu.setSubComponent("memory", "revcpu.RevBasicMemCtrl")
@@ -127,8 +128,13 @@ for i in range(0, NPES):
   # Create the memHierarchy subcomponent
   miface = lsq.setSubComponent("memIface", "memHierarchy.standardInterface")
 
+  # Create the L1 cache
   l1cache = sst.Component("l1cache" + str(i), "memHierarchy.Cache")
   l1cache.addParams(l1cache_params)
+
+  # Create the L2 cache
+  l2cache = sst.Component("l2cache" + str(i), "memHierarchy.Cache")
+  l2cache.addParams(l2cache_params)
   
   # Create the memory controller in memHierarchy
   memctrl = sst.Component("memory" + str(i), "memHierarchy.MemController")
@@ -139,12 +145,19 @@ for i in range(0, NPES):
   memory.addParams(mem_params)
   
   # setup the links
+
+  # Connect CPU to L1
   link_miface_l1cache = sst.Link("link_miface_l1cache" + str(i))
   link_miface_l1cache.connect((miface, "port", "1ns"), (l1cache, "high_network_0", "1ns"))
 
-  link_l1cache_mem = sst.Link("link_l1cache_mem" + str(i))
-  link_l1cache_mem.connect((l1cache, "low_network_0", "40ns"), (memctrl, "direct_link", "40ns"))
-  
+  # Connect L1 to L2
+  link_l1cache_l2 = sst.Link("link_l1cache_l2" + str(i))
+  link_l1cache_l2.connect((l1cache, "low_network_0", "10ns"), (l2cache, "high_network_0", "10ns"))
+
+  # Connect L2 to memory controller
+  link_l2_mem = sst.Link("link_l2_mem" + str(i))
+  link_l2_mem.connect((l2cache, "low_network_0", "40ns"), (memctrl, "direct_link", "40ns"))
+
   # Create remote memory controllers
   rmt_lsq = xbgas_cpu.setSubComponent("remote_memory", "revcpu.RevBasicRmtMemCtrl")
   rmt_nic = rmt_lsq.setSubComponent("xbgasNicIface", "revcpu.XbgasNIC")
@@ -153,7 +166,7 @@ for i in range(0, NPES):
   rmt_nic_iface.addParams(net_params)
   
   link = sst.Link("link" + str(i))
-  link.connect( (rmt_nic_iface, "rtr_port", "200ns"), (router, f"port{i}", "200ns") )
+  link.connect( (rmt_nic_iface, "rtr_port", "100ns"), (router, f"port{i}", "100ns") )
 
 
 # Tell SST what statistics handling we want

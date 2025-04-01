@@ -4,6 +4,7 @@
 #include <time.h>
 #include <sys/time.h>
 #include <string.h>
+#include <ucs/profile/profile_on.h>
 
 // Function to calculate elapsed time in seconds
 double get_elapsed_time(struct timeval start, struct timeval end) {
@@ -58,14 +59,17 @@ int main(int argc, char **argv) {
         gettimeofday(&start, NULL);
 
         // PE 0 sends data to PE 1
-        shmem_char_get(recv_buf, send_buf, nelems, 1);
+        UCS_PROFILE_CODE("shmem_char_get", {
+            shmem_char_get(recv_buf, send_buf, nelems, 1);
+        });
 
         gettimeofday(&end, NULL);
 
         total_time += get_elapsed_time(start, end);
-    }
 
-    shmem_barrier_all(); // Ensure synchronization
+        printf("Start: %ld.%06ld, End: %ld.%06ld\n", start.tv_sec, start.tv_usec, end.tv_sec, end.tv_usec);
+
+    }
 
     if (me == 0) {
         double rate = (nelems / (1024.0 * 1024.0)) / total_time; // Rate in MB/s

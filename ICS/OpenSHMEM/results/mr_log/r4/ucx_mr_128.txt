@@ -1,0 +1,1921 @@
+
+   ucs lib : /home/li29729/local/ucx/lib/libucs.so.0
+   host    : cpu-25-38
+   command : ./oshm_get_mr.exe 128 
+   pid     : 70881
+   version : 3
+   env     : UCX_WARN_UNUSED_ENV_VARS=n UCX_PROFILE_FILE=./results/r4/ucx_mr_128.prof UCX_PROFILE_MODE=log,accum 
+   threads : 2  (showing threads 1,2)
+
+                               NAME    AVG (usec)  TOTAL (usec)      %OVERALL        COUNT               FILE:LINE   FUNCTION                            THREADS
+                         ibv_reg_mr      2220.574     155440.16         8.147           70            ib_md.c:476    uct_ib_reg_mr                       1,2          
+                   ibv_create_qp_ex      6132.946      91994.19         8.178           15         ib_iface.c:1175   uct_ib_iface_create_qp              1            
+           ucs_rcache_create_region     41831.080      83662.16         7.438            2           rcache.c:1111   ucs_rcache_get                      1            
+                            mem_reg     41818.142      83636.28         7.435            2           rcache.c:1017   ucs_rcache_create_region            1            
+                       ibv_dereg_mr       909.178      80007.69         7.113           88            ib_md.c:515    uct_ib_dereg_mr                     1            
+           uct_iface_mp_chunk_alloc      2456.630      78612.16         4.120           32          uct_mem.c:446    uct_iface_mp_chunk_alloc            1,2          
+                       message_rate     15794.571      15794.57         1.404            1      oshm_get_mr.c:65     message_rate                        1            
+                   devx_create_mkey       256.486      14363.27         1.277           56     ib_mlx5dv_md.c:87     uct_ib_mlx5_devx_reg_ksm            1            
+                          mem_dereg      6008.256      12016.51         1.068            2           rcache.c:430    ucs_mem_region_destroy_internal     1            
+         uct_iface_mp_chunk_release       276.159       8837.10         0.786           32          uct_mem.c:478    uct_iface_mp_chunk_release          1            
+                      ibv_reg_dm_mr       250.665       4511.96         0.401           18            ib_md.c:465    uct_ib_reg_mr                       1            
+    uct_ib_mlx5_devx_reg_atomic_key       211.036       4220.72         0.375           20     ib_mlx5dv_md.c:513    uct_ib_mlx5_devx_reg_atomic_key     1            
+                   ibv_create_qp_ex       405.620       2028.10         0.180            5          ud_mlx5.c:944    uct_ud_mlx5dv_calc_tx_wqe_ratio     1            
+                       ibv_alloc_dm        81.676       1470.17         0.131           18     ib_mlx5dv_md.c:1992   uct_ib_mlx5_devx_device_mem_alloc   1            
+                        ibv_free_dm        64.310       1157.59         0.103           18     ib_mlx5dv_md.c:2079   uct_ib_mlx5_devx_device_mem_free    1            
+        ucp_ep_rkey_unpack_internal       194.298        777.19         0.069            4         ucp_rkey.c:796    ucp_ep_rkey_unpack_internal         1            
+             ucp_rkey_proto_resolve       185.275        741.10         0.066            4         ucp_rkey.c:752    ucp_rkey_proto_resolve              1            
+                 ucp_rkey_pack_memh       355.916        711.83         0.063            2         ucp_rkey.c:128    ucp_rkey_pack_memh                  1            
+                   ucp_tag_recv_nbx         8.665        554.60         0.049           64         tag_recv.c:224    ucp_tag_recv_nbx                    1            
+                   ucp_tag_send_nbx         6.397        268.69         0.024           42         tag_send.c:231    ucp_tag_send_nbx                    1            
+              uct_sysv_rkey_release       185.945        185.95         0.017            1          mm_sysv.c:190    uct_sysv_rkey_release               1            
+             ucp_eager_only_handler         1.509         72.45         0.006           48        eager_rcv.c:138    ucp_eager_only_handler              1            
+                    ucp_tag_send_nb        10.250         41.00         0.004            4         tag_send.c:179    ucp_tag_send_nb                     1            
+                ucp_worker_flush_nb         6.756         40.54         0.004            6            flush.c:643    ucp_worker_flush_nb                 1            
+               ucp_worker_flush_nbx         6.193         37.16         0.003            6            flush.c:654    ucp_worker_flush_nbx                1            
+                ucp_tag_send_inline         8.368         33.47         0.003            4         tag_send.c:266    ucp_tag_send_nbx_inner              1            
+                ucp_tag_send_inline         0.772         29.34         0.003           38         tag_send.c:257    ucp_tag_send_nbx_inner              1            
+               uct_sysv_rkey_unpack        23.466         23.47         0.002            1          mm_sysv.c:171    uct_sysv_rkey_unpack                1            
+                    ucp_tag_recv_nb         0.879         17.58         0.002           20         tag_recv.c:207    ucp_tag_recv_nb                     1            
+                   ucp_request_free         0.142          9.63         0.001           68      ucp_request.c:236    ucp_request_free                    1            
+                 ucp_request_cancel         0.500          8.01         0.001           16      ucp_request.c:249    ucp_request_cancel                  1            
+           ucs_rcache_check_overlap         3.518          7.04         0.001            2           rcache.c:955    ucs_rcache_create_region            1            
+                   ucp_request_send         2.305          6.92         0.001            3   proto_common.inl:250    ucp_proto_request_send_op_common    1            
+                 ucs_pgtable_insert         2.946          5.89         0.001            2           rcache.c:988    ucs_rcache_create_region            1            
+           ucs_rcache_lookup_unsafe         2.861          5.72         0.001            2         ucp_mm.inl:58     ucp_memh_get                        1            
+                      memcpy_unpack         0.080          3.87         0.000           48               dt.h:83     ucp_memcpy_unpack                   1            
+                 ucs_pgtable_lookup         2.871          2.87         0.000            1         rcache.inl:65     ucs_rcache_lookup_unsafe            1            
+             ucp_datatype_iter_init         0.622          1.87         0.000            3   proto_common.inl:287    ucp_proto_request_send_op           1            
+     ucp_proto_request_lookup_proto         0.515          1.55         0.000            3   proto_common.inl:242    ucp_proto_request_send_op_common    1            
+                 ucs_pgtable_lookup         1.375          1.38         0.000            1           rcache.c:1088   ucs_rcache_get                      1            
+                         eager_recv           n/a           n/a           n/a           43        eager_rcv.c:28     ucp_eager_common_matched            1            
+                  complete_tag_recv           n/a           n/a           n/a           59    ucp_request.inl:266    ucp_request_complete_tag_recv       1            
+                      complete_send           n/a           n/a           n/a            4    ucp_request.inl:250    ucp_request_complete_send           1            
+                   eager_only_match           n/a           n/a           n/a            5         tag_recv.c:81     ucp_tag_recv_common                 1            
+              complete_imm_tag_recv           n/a           n/a           n/a            5         tag_recv.c:103    ucp_tag_recv_common                 1            
+
+
+Thread 1 (tid 70881, main)
+
+     0.000  ibv_alloc_dm 208.508 {                            ib_mlx5dv_md.c:1992 uct_ib_mlx5_devx_device_mem_alloc()
+   208.508  }
+     4.095  ibv_reg_dm_mr 572.017 {                                  ib_md.c:465  uct_ib_reg_mr()
+   572.017  }
+     7.688  devx_create_mkey 368.156 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   368.156  }
+     2.178  uct_ib_mlx5_devx_reg_atomic_key 262.889 {         ib_mlx5dv_md.c:513  uct_ib_mlx5_devx_reg_atomic_key()
+     0.703      devx_create_mkey 261.544 {                    ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   261.544      }
+     0.642  }
+   405.474  ibv_dereg_mr 3195.392 {                                  ib_md.c:515  uct_ib_dereg_mr()
+  3195.392  }
+     0.582  ibv_free_dm 72.989 {                              ib_mlx5dv_md.c:2079 uct_ib_mlx5_devx_device_mem_free()
+    72.989  }
+     1.676  ibv_reg_mr 34.999 {                                      ib_md.c:476  uct_ib_reg_mr()
+    34.999  }
+     0.592  devx_create_mkey 328.731 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   328.731  }
+ 30831.028  ibv_alloc_dm 85.585 {                             ib_mlx5dv_md.c:1992 uct_ib_mlx5_devx_device_mem_alloc()
+    85.585  }
+     1.064  ibv_reg_dm_mr 243.387 {                                  ib_md.c:465  uct_ib_reg_mr()
+   243.387  }
+     0.994  devx_create_mkey 296.964 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   296.964  }
+     0.261  uct_ib_mlx5_devx_reg_atomic_key 122.682 {         ib_mlx5dv_md.c:513  uct_ib_mlx5_devx_reg_atomic_key()
+     0.442      devx_create_mkey 122.120 {                    ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   122.120      }
+     0.120  }
+   277.773  ibv_dereg_mr 3765.091 {                                  ib_md.c:515  uct_ib_dereg_mr()
+  3765.091  }
+     0.100  ibv_free_dm 63.082 {                              ib_mlx5dv_md.c:2079 uct_ib_mlx5_devx_device_mem_free()
+    63.082  }
+     0.351  ibv_reg_mr 37.287 {                                      ib_md.c:476  uct_ib_reg_mr()
+    37.287  }
+     0.482  devx_create_mkey 310.153 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   310.153  }
+ 20546.086  ibv_dereg_mr 14.614 {                                    ib_md.c:515  uct_ib_dereg_mr()
+    14.614  }
+  9603.943  ibv_alloc_dm 137.045 {                            ib_mlx5dv_md.c:1992 uct_ib_mlx5_devx_device_mem_alloc()
+   137.045  }
+     0.994  ibv_reg_dm_mr 402.473 {                                  ib_md.c:465  uct_ib_reg_mr()
+   402.473  }
+     0.913  devx_create_mkey 250.162 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   250.162  }
+     0.251  uct_ib_mlx5_devx_reg_atomic_key 438.736 {         ib_mlx5dv_md.c:513  uct_ib_mlx5_devx_reg_atomic_key()
+     0.532      devx_create_mkey 437.974 {                    ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   437.974      }
+     0.231  }
+   238.177  ibv_dereg_mr 3020.669 {                                  ib_md.c:515  uct_ib_dereg_mr()
+  3020.669  }
+     0.080  ibv_free_dm 52.453 {                              ib_mlx5dv_md.c:2079 uct_ib_mlx5_devx_device_mem_free()
+    52.453  }
+     2.078  ibv_reg_mr 30.763 {                                      ib_md.c:476  uct_ib_reg_mr()
+    30.763  }
+     0.602  devx_create_mkey 216.387 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   216.387  }
+ 38658.576  ibv_alloc_dm 80.928 {                             ib_mlx5dv_md.c:1992 uct_ib_mlx5_devx_device_mem_alloc()
+    80.928  }
+     1.034  ibv_reg_dm_mr 242.222 {                                  ib_md.c:465  uct_ib_reg_mr()
+   242.222  }
+     0.813  devx_create_mkey 315.181 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   315.181  }
+     0.311  uct_ib_mlx5_devx_reg_atomic_key 103.853 {         ib_mlx5dv_md.c:513  uct_ib_mlx5_devx_reg_atomic_key()
+     0.482      devx_create_mkey 103.200 {                    ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   103.200      }
+     0.171  }
+   240.295  ibv_dereg_mr 3130.463 {                                  ib_md.c:515  uct_ib_dereg_mr()
+  3130.463  }
+     0.090  ibv_free_dm 61.045 {                              ib_mlx5dv_md.c:2079 uct_ib_mlx5_devx_device_mem_free()
+    61.045  }
+     0.361  ibv_reg_mr 23.085 {                                      ib_md.c:476  uct_ib_reg_mr()
+    23.085  }
+     0.452  devx_create_mkey 311.819 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   311.819  }
+   228.642  ibv_dereg_mr 12.024 {                                    ib_md.c:515  uct_ib_dereg_mr()
+    12.024  }
+  8572.533  ibv_alloc_dm 64.829 {                             ib_mlx5dv_md.c:1992 uct_ib_mlx5_devx_device_mem_alloc()
+    64.829  }
+     1.004  ibv_reg_dm_mr 221.285 {                                  ib_md.c:465  uct_ib_reg_mr()
+   221.285  }
+     0.984  devx_create_mkey 286.847 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   286.847  }
+     0.291  uct_ib_mlx5_devx_reg_atomic_key 97.519 {          ib_mlx5dv_md.c:513  uct_ib_mlx5_devx_reg_atomic_key()
+     0.452      devx_create_mkey 96.897 {                     ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+    96.897      }
+     0.171  }
+   205.567  ibv_dereg_mr 3937.065 {                                  ib_md.c:515  uct_ib_dereg_mr()
+  3937.065  }
+     0.090  ibv_free_dm 59.971 {                              ib_mlx5dv_md.c:2079 uct_ib_mlx5_devx_device_mem_free()
+    59.971  }
+     0.341  ibv_reg_mr 20.967 {                                      ib_md.c:476  uct_ib_reg_mr()
+    20.967  }
+     0.502  devx_create_mkey 300.848 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   300.848  }
+   213.175  ibv_dereg_mr 11.623 {                                    ib_md.c:515  uct_ib_dereg_mr()
+    11.623  }
+  7171.521  ibv_alloc_dm 55.786 {                             ib_mlx5dv_md.c:1992 uct_ib_mlx5_devx_device_mem_alloc()
+    55.786  }
+     0.923  ibv_reg_dm_mr 176.149 {                                  ib_md.c:465  uct_ib_reg_mr()
+   176.149  }
+     1.034  devx_create_mkey 210.295 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   210.295  }
+     0.321  uct_ib_mlx5_devx_reg_atomic_key 317.761 {         ib_mlx5dv_md.c:513  uct_ib_mlx5_devx_reg_atomic_key()
+     0.472      devx_create_mkey 317.128 {                    ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   317.128      }
+     0.161  }
+   160.411  ibv_dereg_mr 3319.118 {                                  ib_md.c:515  uct_ib_dereg_mr()
+  3319.118  }
+     0.080  ibv_free_dm 53.517 {                              ib_mlx5dv_md.c:2079 uct_ib_mlx5_devx_device_mem_free()
+    53.517  }
+     0.743  ibv_reg_mr 24.420 {                                      ib_md.c:476  uct_ib_reg_mr()
+    24.420  }
+     0.502  devx_create_mkey 206.983 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   206.983  }
+   182.743  ibv_dereg_mr 13.128 {                                    ib_md.c:515  uct_ib_dereg_mr()
+    13.128  }
+ 12799.606  uct_iface_mp_chunk_alloc 110.638 {                     uct_mem.c:446  uct_iface_mp_chunk_alloc()
+   110.638  }
+   850.403  uct_iface_mp_chunk_alloc 1240.310 {                    uct_mem.c:446  uct_iface_mp_chunk_alloc()
+  1240.310  }
+  3297.950  ibv_create_qp_ex 17883.276 {                          ib_iface.c:1175 uct_ib_iface_create_qp()
+ 17883.276  }
+  3280.837  ibv_create_qp_ex 17252.833 {                          ib_iface.c:1175 uct_ib_iface_create_qp()
+ 17252.833  }
+  1604.020  uct_iface_mp_chunk_alloc 99.165 {                      uct_mem.c:446  uct_iface_mp_chunk_alloc()
+    31.366      ibv_reg_mr 67.539 {                                  ib_md.c:476  uct_ib_reg_mr()
+    67.539      }
+     0.261  }
+ 13256.329  uct_iface_mp_chunk_alloc 3753.880 {                    uct_mem.c:446  uct_iface_mp_chunk_alloc()
+    22.714      ibv_reg_mr 3729.530 {                                ib_md.c:476  uct_ib_reg_mr()
+  3729.530      }
+     1.636  }
+  3448.987  ibv_create_qp_ex 489.403 {                             ud_mlx5.c:944  uct_ud_mlx5dv_calc_tx_wqe_ratio()
+   489.403  }
+  1714.968  ibv_create_qp_ex 494.100 {                            ib_iface.c:1175 uct_ib_iface_create_qp()
+   494.100  }
+   492.826  uct_iface_mp_chunk_alloc 90.915 {                      uct_mem.c:446  uct_iface_mp_chunk_alloc()
+    25.905      ibv_reg_mr 64.728 {                                  ib_md.c:476  uct_ib_reg_mr()
+    64.728      }
+     0.281  }
+  5459.855  ibv_create_qp_ex 25984.713 {                          ib_iface.c:1175 uct_ib_iface_create_qp()
+ 25984.713  }
+  2666.243  ibv_create_qp_ex 25599.454 {                          ib_iface.c:1175 uct_ib_iface_create_qp()
+ 25599.454  }
+   953.934  uct_iface_mp_chunk_alloc 436.759 {                     uct_mem.c:446  uct_iface_mp_chunk_alloc()
+    13.550      ibv_reg_mr 394.614 {                                 ib_md.c:476  uct_ib_reg_mr()
+   394.614      }
+     0.271      ibv_reg_mr 28.144 {                                  ib_md.c:476  uct_ib_reg_mr()
+    28.144      }
+     0.181  }
+  6837.802  uct_iface_mp_chunk_alloc 4553.877 {                    uct_mem.c:446  uct_iface_mp_chunk_alloc()
+    21.820      ibv_reg_mr 3954.800 {                                ib_md.c:476  uct_ib_reg_mr()
+  3954.800      }
+     1.586      ibv_reg_mr 574.948 {                                 ib_md.c:476  uct_ib_reg_mr()
+   574.948      }
+     0.723  }
+  2766.031  ibv_create_qp_ex 355.470 {                             ud_mlx5.c:944  uct_ud_mlx5dv_calc_tx_wqe_ratio()
+   355.470  }
+  1279.193  ibv_create_qp_ex 413.524 {                            ib_iface.c:1175 uct_ib_iface_create_qp()
+   413.524  }
+   272.012  uct_iface_mp_chunk_alloc 437.251 {                     uct_mem.c:446  uct_iface_mp_chunk_alloc()
+    23.988      ibv_reg_mr 384.416 {                                 ib_md.c:476  uct_ib_reg_mr()
+   384.416      }
+     0.291      ibv_reg_mr 28.344 {                                  ib_md.c:476  uct_ib_reg_mr()
+    28.344      }
+     0.211  }
+ 17813.448  uct_iface_mp_chunk_alloc 4609.573 {                    uct_mem.c:446  uct_iface_mp_chunk_alloc()
+    24.490      ibv_reg_mr 3990.502 {                                ib_md.c:476  uct_ib_reg_mr()
+  3990.502      }
+     1.496      ibv_reg_mr 586.250 {                                 ib_md.c:476  uct_ib_reg_mr()
+   586.250      }
+     6.835  }
+  2120.683  uct_iface_mp_chunk_alloc 977.270 {                     uct_mem.c:446  uct_iface_mp_chunk_alloc()
+    62.831      ibv_reg_mr 812.594 {                                 ib_md.c:476  uct_ib_reg_mr()
+   812.594      }
+     0.351      ibv_reg_mr 101.273 {                                 ib_md.c:476  uct_ib_reg_mr()
+   101.273      }
+     0.221  }
+  8155.326  NEW ucp_request {1}                              ucp_request.inl:284  ucp_request_mem_alloc()
+    29.368  NEW ucp_request {2}                              ucp_request.inl:284  ucp_request_mem_alloc()
+ 14058.394  NEW ucp_request {3}                                 ucp_worker.c:3594 ucp_worker_discard_tl_uct_ep()
+  8316.951  FREE {3}                                         ucp_request.inl:238  ucp_request_put()
+ 77305.319  ibv_alloc_dm 104.385 {                            ib_mlx5dv_md.c:1992 uct_ib_mlx5_devx_device_mem_alloc()
+   104.385  }
+     1.235  ibv_reg_dm_mr 263.059 {                                  ib_md.c:465  uct_ib_reg_mr()
+   263.059  }
+     1.315  devx_create_mkey 324.004 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   324.004  }
+     0.512  uct_ib_mlx5_devx_reg_atomic_key 142.354 {         ib_mlx5dv_md.c:513  uct_ib_mlx5_devx_reg_atomic_key()
+     0.442      devx_create_mkey 141.762 {                    ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   141.762      }
+     0.151  }
+   350.451  ibv_dereg_mr 3308.670 {                                  ib_md.c:515  uct_ib_dereg_mr()
+  3308.670  }
+     0.100  ibv_free_dm 75.328 {                              ib_mlx5dv_md.c:2079 uct_ib_mlx5_devx_device_mem_free()
+    75.328  }
+     0.351  ibv_reg_mr 25.695 {                                      ib_md.c:476  uct_ib_reg_mr()
+    25.695  }
+     0.401  devx_create_mkey 325.600 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   325.600  }
+  2035.971  ibv_dereg_mr 14.092 {                                    ib_md.c:515  uct_ib_dereg_mr()
+    14.092  }
+  8568.478  ibv_alloc_dm 70.259 {                             ib_mlx5dv_md.c:1992 uct_ib_mlx5_devx_device_mem_alloc()
+    70.259  }
+     1.044  ibv_reg_dm_mr 231.854 {                                  ib_md.c:465  uct_ib_reg_mr()
+   231.854  }
+     0.964  devx_create_mkey 304.954 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   304.954  }
+     0.231  uct_ib_mlx5_devx_reg_atomic_key 106.543 {         ib_mlx5dv_md.c:513  uct_ib_mlx5_devx_reg_atomic_key()
+     0.432      devx_create_mkey 105.950 {                    ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   105.950      }
+     0.161  }
+   211.740  ibv_dereg_mr 3057.796 {                                  ib_md.c:515  uct_ib_dereg_mr()
+  3057.796  }
+     0.090  ibv_free_dm 57.773 {                              ib_mlx5dv_md.c:2079 uct_ib_mlx5_devx_device_mem_free()
+    57.773  }
+     0.321  ibv_reg_mr 20.947 {                                      ib_md.c:476  uct_ib_reg_mr()
+    20.947  }
+     0.452  devx_create_mkey 303.127 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   303.127  }
+ 20489.026  ibv_dereg_mr 13.610 {                                    ib_md.c:515  uct_ib_dereg_mr()
+    13.610  }
+  7202.556  ibv_alloc_dm 60.101 {                             ib_mlx5dv_md.c:1992 uct_ib_mlx5_devx_device_mem_alloc()
+    60.101  }
+     1.154  ibv_reg_dm_mr 181.067 {                                  ib_md.c:465  uct_ib_reg_mr()
+   181.067  }
+     1.465  devx_create_mkey 215.052 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   215.052  }
+     0.231  uct_ib_mlx5_devx_reg_atomic_key 350.250 {         ib_mlx5dv_md.c:513  uct_ib_mlx5_devx_reg_atomic_key()
+     0.412      devx_create_mkey 349.628 {                    ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   349.628      }
+     0.211  }
+   161.886  ibv_dereg_mr 3994.657 {                                  ib_md.c:515  uct_ib_dereg_mr()
+  3994.657  }
+     0.100  ibv_free_dm 76.974 {                              ib_mlx5dv_md.c:2079 uct_ib_mlx5_devx_device_mem_free()
+    76.974  }
+     0.974  ibv_reg_mr 23.396 {                                      ib_md.c:476  uct_ib_reg_mr()
+    23.396  }
+     0.532  devx_create_mkey 217.020 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   217.020  }
+  8920.836  ibv_alloc_dm 62.199 {                             ib_mlx5dv_md.c:1992 uct_ib_mlx5_devx_device_mem_alloc()
+    62.199  }
+     1.084  ibv_reg_dm_mr 232.436 {                                  ib_md.c:465  uct_ib_reg_mr()
+   232.436  }
+     0.803  devx_create_mkey 310.614 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   310.614  }
+     0.251  uct_ib_mlx5_devx_reg_atomic_key 102.277 {         ib_mlx5dv_md.c:513  uct_ib_mlx5_devx_reg_atomic_key()
+     0.472      devx_create_mkey 101.655 {                    ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   101.655      }
+     0.151  }
+   208.187  ibv_dereg_mr 3867.157 {                                  ib_md.c:515  uct_ib_dereg_mr()
+  3867.157  }
+     0.090  ibv_free_dm 82.102 {                              ib_mlx5dv_md.c:2079 uct_ib_mlx5_devx_device_mem_free()
+    82.102  }
+     0.331  ibv_reg_mr 21.319 {                                      ib_md.c:476  uct_ib_reg_mr()
+    21.319  }
+     0.502  devx_create_mkey 319.698 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   319.698  }
+   230.098  ibv_dereg_mr 11.864 {                                    ib_md.c:515  uct_ib_dereg_mr()
+    11.864  }
+  8576.247  ibv_alloc_dm 61.958 {                             ib_mlx5dv_md.c:1992 uct_ib_mlx5_devx_device_mem_alloc()
+    61.958  }
+     1.184  ibv_reg_dm_mr 218.535 {                                  ib_md.c:465  uct_ib_reg_mr()
+   218.535  }
+     0.813  devx_create_mkey 300.728 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   300.728  }
+     0.281  uct_ib_mlx5_devx_reg_atomic_key 100.079 {         ib_mlx5dv_md.c:513  uct_ib_mlx5_devx_reg_atomic_key()
+     0.442      devx_create_mkey 99.456 {                     ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+    99.456      }
+     0.181  }
+   186.387  ibv_dereg_mr 3913.528 {                                  ib_md.c:515  uct_ib_dereg_mr()
+  3913.528  }
+     0.100  ibv_free_dm 82.795 {                              ib_mlx5dv_md.c:2079 uct_ib_mlx5_devx_device_mem_free()
+    82.795  }
+     0.331  ibv_reg_mr 19.652 {                                      ib_md.c:476  uct_ib_reg_mr()
+    19.652  }
+     0.502  devx_create_mkey 302.314 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   302.314  }
+   218.826  ibv_dereg_mr 12.817 {                                    ib_md.c:515  uct_ib_dereg_mr()
+    12.817  }
+  7101.443  ibv_alloc_dm 52.734 {                             ib_mlx5dv_md.c:1992 uct_ib_mlx5_devx_device_mem_alloc()
+    52.734  }
+     1.064  ibv_reg_dm_mr 175.998 {                                  ib_md.c:465  uct_ib_reg_mr()
+   175.998  }
+     1.044  devx_create_mkey 204.604 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   204.604  }
+     0.311  uct_ib_mlx5_devx_reg_atomic_key 311.096 {         ib_mlx5dv_md.c:513  uct_ib_mlx5_devx_reg_atomic_key()
+     0.472      devx_create_mkey 310.464 {                    ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   310.464      }
+     0.161  }
+   156.677  ibv_dereg_mr 3379.290 {                                  ib_md.c:515  uct_ib_dereg_mr()
+  3379.290  }
+     0.100  ibv_free_dm 49.593 {                              ib_mlx5dv_md.c:2079 uct_ib_mlx5_devx_device_mem_free()
+    49.593  }
+     0.652  ibv_reg_mr 22.101 {                                      ib_md.c:476  uct_ib_reg_mr()
+    22.101  }
+     0.462  devx_create_mkey 227.087 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   227.087  }
+   198.662  ibv_dereg_mr 12.085 {                                    ib_md.c:515  uct_ib_dereg_mr()
+    12.085  }
+  1261.648  uct_iface_mp_chunk_alloc 30.994 {                      uct_mem.c:446  uct_iface_mp_chunk_alloc()
+    30.994  }
+   859.426  uct_iface_mp_chunk_alloc 1061.631 {                    uct_mem.c:446  uct_iface_mp_chunk_alloc()
+  1061.631  }
+  1533.409  ibv_create_qp_ex 539.749 {                            ib_iface.c:1175 uct_ib_iface_create_qp()
+   539.749  }
+  1201.185  ibv_create_qp_ex 389.455 {                            ib_iface.c:1175 uct_ib_iface_create_qp()
+   389.455  }
+   292.287  uct_iface_mp_chunk_alloc 407.110 {                     uct_mem.c:446  uct_iface_mp_chunk_alloc()
+    18.247      ibv_reg_mr 361.602 {                                 ib_md.c:476  uct_ib_reg_mr()
+   361.602      }
+     0.231      ibv_reg_mr 26.839 {                                  ib_md.c:476  uct_ib_reg_mr()
+    26.839      }
+     0.191  }
+  5681.502  uct_iface_mp_chunk_alloc 4589.258 {                    uct_mem.c:446  uct_iface_mp_chunk_alloc()
+    19.010      ibv_reg_mr 3985.835 {                                ib_md.c:476  uct_ib_reg_mr()
+  3985.835      }
+     2.048      ibv_reg_mr 581.382 {                                 ib_md.c:476  uct_ib_reg_mr()
+   581.382      }
+     0.984  }
+  2575.709  ibv_create_qp_ex 355.510 {                             ud_mlx5.c:944  uct_ud_mlx5dv_calc_tx_wqe_ratio()
+   355.510  }
+  1214.545  ibv_create_qp_ex 387.427 {                            ib_iface.c:1175 uct_ib_iface_create_qp()
+   387.427  }
+   269.503  uct_iface_mp_chunk_alloc 389.987 {                     uct_mem.c:446  uct_iface_mp_chunk_alloc()
+    26.437      ibv_reg_mr 338.397 {                                 ib_md.c:476  uct_ib_reg_mr()
+   338.397      }
+     0.311      ibv_reg_mr 24.641 {                                  ib_md.c:476  uct_ib_reg_mr()
+    24.641      }
+     0.201  }
+  1216.080  ucp_tag_recv_nbx 521.602 {                            tag_recv.c:224  ucp_tag_recv_nbx()
+     3.794      NEW ucp_request {4}                               tag_recv.c:240  ucp_tag_recv_nbx_inner()
+   517.808  }
+  2380.390  NEW ucp_request {5}                              ucp_request.inl:284  ucp_request_mem_alloc()
+     5.651  NEW ucp_request {6}                              ucp_request.inl:284  ucp_request_mem_alloc()
+     9.435  ucp_tag_send_nbx 196.665 {                            tag_send.c:231  ucp_tag_send_nbx()
+     0.833      ucp_tag_send_inline 1.857 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     1.857      }
+     0.984      NEW ucp_request {7}                               tag_send.c:287  ucp_tag_send_nbx_inner()
+     0.552      ucp_datatype_iter_init 1.496 {               proto_common.inl:287  ucp_proto_request_send_op()
+     1.496      }
+   185.192      ucp_proto_request_lookup_proto 0.763 {       proto_common.inl:242  ucp_proto_request_send_op_common()
+     0.763      }
+     0.301      ucp_request_send 3.222 {                     proto_common.inl:250  ucp_proto_request_send_op_common()
+     3.222      }
+     1.465  }
+  8081.253  NEW ucp_request {8}                              ucp_request.inl:284  ucp_request_mem_alloc()
+     3.202  NEW ucp_request {9}                              ucp_request.inl:284  ucp_request_mem_alloc()
+     2.168  FREE {8}                                         ucp_request.inl:291  ucp_request_mem_free()
+     0.050  FREE {9}                                         ucp_request.inl:291  ucp_request_mem_free()
+   985.591  ucp_eager_only_handler 7.999 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     2.519      eager_recv {4}                                   eager_rcv.c:28   ucp_eager_common_matched()
+     0.642      memcpy_unpack 0.391 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.391      }
+     2.038      complete_tag_recv {4}                        ucp_request.inl:266  ucp_request_complete_tag_recv()
+     2.409  }
+     3.834  ucp_request_free 1.174 {                           ucp_request.c:236  ucp_request_free()
+     0.582      FREE {4}                                     ucp_request.inl:238  ucp_request_put()
+     0.592  }
+  1394.066  NEW ucp_request {10}                                ucp_worker.c:3594 ucp_worker_discard_tl_uct_ep()
+   607.448  complete_send {7}                                ucp_request.inl:250  ucp_request_complete_send()
+     1.295  ucp_request_free 0.120 {                           ucp_request.c:236  ucp_request_free()
+     0.080      FREE {7}                                     ucp_request.inl:238  ucp_request_put()
+     0.040  }
+     4.737  FREE {10}                                        ucp_request.inl:238  ucp_request_put()
+     5.992  ucp_tag_recv_nbx 0.391 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.080      NEW ucp_request {11}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.311  }
+     0.151  ucp_tag_send_nbx 6.554 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.040      ucp_tag_send_inline 6.464 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     6.464      }
+     0.050  }
+    34.587  ucp_eager_only_handler 0.492 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.120      eager_recv {11}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.070      memcpy_unpack 0.090 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.090      }
+     0.181      complete_tag_recv {11}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.030  }
+     0.181  ucp_request_free 0.060 {                           ucp_request.c:236  ucp_request_free()
+     0.040      FREE {11}                                    ucp_request.inl:238  ucp_request_put()
+     0.020  }
+   321.073  uct_iface_mp_chunk_alloc 4550.886 {                    uct_mem.c:446  uct_iface_mp_chunk_alloc()
+    22.322      ibv_reg_mr 3950.384 {                                ib_md.c:476  uct_ib_reg_mr()
+  3950.384      }
+     1.606      ibv_reg_mr 575.811 {                                 ib_md.c:476  uct_ib_reg_mr()
+   575.811      }
+     0.763  }
+  1821.139  uct_iface_mp_chunk_alloc 977.652 {                     uct_mem.c:446  uct_iface_mp_chunk_alloc()
+    63.353      ibv_reg_mr 813.246 {                                 ib_md.c:476  uct_ib_reg_mr()
+   813.246      }
+     0.331      ibv_reg_mr 100.520 {                                 ib_md.c:476  uct_ib_reg_mr()
+   100.520      }
+     0.201  }
+  8102.552  NEW ucp_request {12}                             ucp_request.inl:284  ucp_request_mem_alloc()
+    11.211  NEW ucp_request {13}                             ucp_request.inl:284  ucp_request_mem_alloc()
+     9.736  ucp_tag_send_nb 36.223 {                              tag_send.c:179  ucp_tag_send_nb()
+     3.523      ucp_tag_send_nbx 32.419 {                         tag_send.c:231  ucp_tag_send_nbx()
+     0.683          ucp_tag_send_inline 31.215 {                  tag_send.c:266  ucp_tag_send_nbx_inner()
+     8.441              ucp_eager_only_handler 22.041 {          eager_rcv.c:138  ucp_eager_only_handler()
+    22.041              }
+     0.733          }
+     0.522      }
+     0.281  }
+     4.336  ucp_tag_recv_nb 8.521 {                               tag_recv.c:207  ucp_tag_recv_nb()
+     1.686      ucp_tag_recv_nbx 6.524 {                          tag_recv.c:224  ucp_tag_recv_nbx()
+     3.824          NEW ucp_request {14}                          tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.713          eager_only_match {14}                         tag_recv.c:81   ucp_tag_recv_common()
+     1.114          memcpy_unpack 0.251 {                               dt.h:83   ucp_memcpy_unpack()
+     0.251          }
+     0.452          complete_imm_tag_recv {14}                    tag_recv.c:103  ucp_tag_recv_common()
+     0.171      }
+     0.311  }
+     6.554  ucp_request_free 0.783 {                           ucp_request.c:236  ucp_request_free()
+     0.492      FREE {14}                                    ucp_request.inl:238  ucp_request_put()
+     0.291  }
+    10.790  uct_iface_mp_chunk_alloc 4720.742 {                    uct_mem.c:446  uct_iface_mp_chunk_alloc()
+    19.130      ibv_reg_mr 4081.949 {                                ib_md.c:476  uct_ib_reg_mr()
+  4081.949      }
+     0.954      ibv_reg_mr 617.666 {                                 ib_md.c:476  uct_ib_reg_mr()
+   617.666      }
+     1.044  }
+    96.927  FREE {12}                                        ucp_request.inl:291  ucp_request_mem_free()
+     0.412  FREE {13}                                        ucp_request.inl:291  ucp_request_mem_free()
+   435.545  NEW ucp_request {15}                             ucp_request.inl:284  ucp_request_mem_alloc()
+     7.608  NEW ucp_request {16}                             ucp_request.inl:284  ucp_request_mem_alloc()
+    11.432  FREE {15}                                        ucp_request.inl:291  ucp_request_mem_free()
+     0.050  FREE {16}                                        ucp_request.inl:291  ucp_request_mem_free()
+  1725.066  NEW ucp_request {17}                             ucp_request.inl:284  ucp_request_mem_alloc()
+     3.774  NEW ucp_request {18}                             ucp_request.inl:284  ucp_request_mem_alloc()
+     0.873  ucp_tag_send_nb 1.837 {                               tag_send.c:179  ucp_tag_send_nb()
+     0.161      ucp_tag_send_nbx 1.636 {                          tag_send.c:231  ucp_tag_send_nbx()
+     0.141          ucp_tag_send_inline 0.151 {                   tag_send.c:266  ucp_tag_send_nbx_inner()
+     0.151          }
+     0.181          NEW ucp_request {19}                          tag_send.c:287  ucp_tag_send_nbx_inner()
+     0.141          ucp_datatype_iter_init 0.141 {           proto_common.inl:287  ucp_proto_request_send_op()
+     0.141          }
+     0.110          ucp_proto_request_lookup_proto 0.141 {   proto_common.inl:242  ucp_proto_request_send_op_common()
+     0.141          }
+     0.040          ucp_request_send 0.522 {                 proto_common.inl:250  ucp_proto_request_send_op_common()
+     0.522          }
+     0.070      }
+     0.040  }
+     0.622  ucp_tag_recv_nb 1.174 {                               tag_recv.c:207  ucp_tag_recv_nb()
+     0.060      ucp_tag_recv_nbx 1.074 {                          tag_recv.c:224  ucp_tag_recv_nbx()
+     0.181          NEW ucp_request {20}                          tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.893      }
+     0.040  }
+    13.028  NEW ucp_request {21}                                ucp_worker.c:3594 ucp_worker_discard_tl_uct_ep()
+     7.367  FREE {21}                                        ucp_request.inl:238  ucp_request_put()
+ 33736.934  NEW ucp_request {22}                                ucp_worker.c:3594 ucp_worker_discard_tl_uct_ep()
+    19.442  complete_send {19}                               ucp_request.inl:250  ucp_request_complete_send()
+     0.462  NEW ucp_request {23}                             ucp_request.inl:284  ucp_request_mem_alloc()
+    19.211  uct_iface_mp_chunk_alloc 1436.522 {                    uct_mem.c:446  uct_iface_mp_chunk_alloc()
+    57.933      ibv_reg_mr 1220.878 {                                ib_md.c:476  uct_ib_reg_mr()
+  1220.878      }
+     0.311      ibv_reg_mr 157.149 {                                 ib_md.c:476  uct_ib_reg_mr()
+   157.149      }
+     0.251  }
+    27.933  FREE {23}                                        ucp_request.inl:291  ucp_request_mem_free()
+     4.778  FREE {22}                                        ucp_request.inl:238  ucp_request_put()
+     0.662  ucp_request_free 0.823 {                           ucp_request.c:236  ucp_request_free()
+     0.331      FREE {19}                                    ucp_request.inl:238  ucp_request_put()
+     0.492  }
+    12.034  ucp_eager_only_handler 14.132 {                      eager_rcv.c:138  ucp_eager_only_handler()
+     0.442      eager_recv {20}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.120      memcpy_unpack 0.120 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.120      }
+    13.158      complete_tag_recv {20}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.291  }
+     0.743  ucp_request_free 0.060 {                           ucp_request.c:236  ucp_request_free()
+     0.040      FREE {20}                                    ucp_request.inl:238  ucp_request_put()
+     0.020  }
+   600.312  ucp_tag_recv_nbx 1.566 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.522      NEW ucp_request {24}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     1.044  }
+     0.662  ucp_tag_send_nbx 2.158 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.040      ucp_tag_send_inline 2.058 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     2.058      }
+     0.060  }
+    65.903  ucp_eager_only_handler 0.843 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.090      eager_recv {24}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.040      memcpy_unpack 0.130 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.130      }
+     0.050      complete_tag_recv {24}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.532  }
+     0.582  ucp_request_free 0.070 {                           ucp_request.c:236  ucp_request_free()
+     0.030      FREE {24}                                    ucp_request.inl:238  ucp_request_put()
+     0.040  }
+   464.511  ucp_tag_recv_nbx 0.291 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.171      NEW ucp_request {25}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.120  }
+     0.070  ucp_tag_send_nbx 0.331 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.040      ucp_tag_send_inline 0.261 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     0.261      }
+     0.030  }
+   184.158  ucp_eager_only_handler 0.231 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.080      eager_recv {25}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.040      memcpy_unpack 0.030 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.030      }
+     0.030      complete_tag_recv {25}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.050  }
+     0.080  ucp_request_free 0.060 {                           ucp_request.c:236  ucp_request_free()
+     0.040      FREE {25}                                    ucp_request.inl:238  ucp_request_put()
+     0.020  }
+     0.803  ucp_tag_recv_nbx 0.110 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.020      NEW ucp_request {26}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.090  }
+     0.141  ucp_tag_send_nbx 1.315 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.020      ucp_tag_send_inline 1.275 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     1.275      }
+     0.020  }
+     0.753  ucp_eager_only_handler 0.281 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.040      eager_recv {26}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.040      memcpy_unpack 0.040 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.040      }
+     0.130      complete_tag_recv {26}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.030  }
+     0.100  ucp_request_free 0.070 {                           ucp_request.c:236  ucp_request_free()
+     0.030      FREE {26}                                    ucp_request.inl:238  ucp_request_put()
+     0.040  }
+  1485.091  ucp_tag_recv_nbx 0.311 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.120      NEW ucp_request {27}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.191  }
+     0.090  ucp_tag_send_nbx 0.512 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.030      ucp_tag_send_inline 0.452 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     0.452      }
+     0.030  }
+     7.347  ucp_eager_only_handler 0.331 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.080      eager_recv {27}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.050      memcpy_unpack 0.080 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.080      }
+     0.060      complete_tag_recv {27}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.060  }
+     0.130  ucp_request_free 0.090 {                           ucp_request.c:236  ucp_request_free()
+     0.060      FREE {27}                                    ucp_request.inl:238  ucp_request_put()
+     0.030  }
+     2.941  ucp_tag_recv_nbx 0.120 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.040      NEW ucp_request {28}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.080  }
+     0.050  ucp_tag_send_nbx 0.733 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.030      ucp_tag_send_inline 0.683 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     0.683      }
+     0.020  }
+     0.241  ucp_eager_only_handler 0.321 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.130      eager_recv {28}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.030      memcpy_unpack 0.030 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.030      }
+     0.030      complete_tag_recv {28}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.100  }
+     0.070  ucp_request_free 0.060 {                           ucp_request.c:236  ucp_request_free()
+     0.030      FREE {28}                                    ucp_request.inl:238  ucp_request_put()
+     0.030  }
+     0.773  ucp_tag_recv_nbx 0.120 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.030      NEW ucp_request {29}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.090  }
+     0.050  ucp_tag_send_nbx 0.191 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.020      ucp_tag_send_inline 0.141 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     0.141      }
+     0.030  }
+     2.319  ucp_eager_only_handler 0.181 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.040      eager_recv {29}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.040      memcpy_unpack 0.030 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.030      }
+     0.030      complete_tag_recv {29}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.040  }
+     0.070  ucp_request_free 0.060 {                           ucp_request.c:236  ucp_request_free()
+     0.030      FREE {29}                                    ucp_request.inl:238  ucp_request_put()
+     0.030  }
+     2.168  ucp_tag_recv_nbx 0.120 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.030      NEW ucp_request {30}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.090  }
+     0.070  ucp_tag_send_nbx 0.271 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.030      ucp_tag_send_inline 0.221 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     0.221      }
+     0.020  }
+     0.853  ucp_eager_only_handler 0.191 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.050      eager_recv {30}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.040      memcpy_unpack 0.030 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.030      }
+     0.040      complete_tag_recv {30}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.030  }
+     0.080  ucp_request_free 0.060 {                           ucp_request.c:236  ucp_request_free()
+     0.030      FREE {30}                                    ucp_request.inl:238  ucp_request_put()
+     0.030  }
+     1.907  ucp_tag_recv_nbx 0.100 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.030      NEW ucp_request {31}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.070  }
+     0.060  ucp_tag_send_nbx 0.361 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.030      ucp_tag_send_inline 0.311 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     0.311      }
+     0.020  }
+     2.048  ucp_eager_only_handler 0.171 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.040      eager_recv {31}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.040      memcpy_unpack 0.030 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.030      }
+     0.030      complete_tag_recv {31}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.030  }
+     0.080  ucp_request_free 0.060 {                           ucp_request.c:236  ucp_request_free()
+     0.030      FREE {31}                                    ucp_request.inl:238  ucp_request_put()
+     0.030  }
+     2.730  ucp_tag_recv_nbx 0.231 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.030      NEW ucp_request {32}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.201  }
+     0.833  ucp_eager_only_handler 0.201 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.060      eager_recv {32}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.030      memcpy_unpack 0.030 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.030      }
+     0.040      complete_tag_recv {32}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.040  }
+     0.070  ucp_request_free 0.060 {                           ucp_request.c:236  ucp_request_free()
+     0.030      FREE {32}                                    ucp_request.inl:238  ucp_request_put()
+     0.030  }
+     0.171  ucp_eager_only_handler 3.081 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     3.081  }
+     0.231  ucp_tag_recv_nbx 1.425 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.020      NEW ucp_request {33}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.211      eager_only_match {33}                             tag_recv.c:81   ucp_tag_recv_common()
+     0.522      memcpy_unpack 0.231 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.231      }
+     0.381      complete_imm_tag_recv {33}                        tag_recv.c:103  ucp_tag_recv_common()
+     0.060  }
+     0.070  ucp_request_free 0.060 {                           ucp_request.c:236  ucp_request_free()
+     0.030      FREE {33}                                    ucp_request.inl:238  ucp_request_put()
+     0.030  }
+     0.161  ucp_eager_only_handler 0.120 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.120  }
+     0.241  ucp_tag_recv_nbx 0.261 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.030      NEW ucp_request {34}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.040      eager_only_match {34}                             tag_recv.c:81   ucp_tag_recv_common()
+     0.070      memcpy_unpack 0.050 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.050      }
+     0.030      complete_imm_tag_recv {34}                        tag_recv.c:103  ucp_tag_recv_common()
+     0.040  }
+     0.040  ucp_request_free 0.060 {                           ucp_request.c:236  ucp_request_free()
+     0.030      FREE {34}                                    ucp_request.inl:238  ucp_request_put()
+     0.030  }
+     0.261  ucp_eager_only_handler 0.181 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.181  }
+     3.443  ucp_tag_recv_nbx 0.261 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.030      NEW ucp_request {35}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.050      eager_only_match {35}                             tag_recv.c:81   ucp_tag_recv_common()
+     0.070      memcpy_unpack 0.030 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.030      }
+     0.050      complete_imm_tag_recv {35}                        tag_recv.c:103  ucp_tag_recv_common()
+     0.030  }
+     0.050  ucp_tag_send_nbx 0.221 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.040      ucp_tag_send_inline 0.151 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     0.151      }
+     0.030  }
+     0.050  ucp_request_free 0.060 {                           ucp_request.c:236  ucp_request_free()
+     0.030      FREE {35}                                    ucp_request.inl:238  ucp_request_put()
+     0.030  }
+    27.411  ucp_tag_recv_nbx 0.181 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.070      NEW ucp_request {36}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.110  }
+     0.060  ucp_tag_send_nbx 0.281 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.020      ucp_tag_send_inline 0.231 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     0.231      }
+     0.030  }
+     3.372  ucp_eager_only_handler 0.221 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.090      eager_recv {36}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.030      memcpy_unpack 0.030 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.030      }
+     0.040      complete_tag_recv {36}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.030  }
+     0.622  ucp_request_free 0.050 {                           ucp_request.c:236  ucp_request_free()
+     0.030      FREE {36}                                    ucp_request.inl:238  ucp_request_put()
+     0.020  }
+     0.683  ucp_tag_recv_nbx 0.120 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.020      NEW ucp_request {37}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.100  }
+     0.050  ucp_tag_send_nbx 0.271 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.030      ucp_tag_send_inline 0.211 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     0.211      }
+     0.030  }
+     0.231  ucp_eager_only_handler 0.181 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.040      eager_recv {37}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.040      memcpy_unpack 0.030 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.030      }
+     0.030      complete_tag_recv {37}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.040  }
+     0.100  ucp_request_free 0.050 {                           ucp_request.c:236  ucp_request_free()
+     0.020      FREE {37}                                    ucp_request.inl:238  ucp_request_put()
+     0.030  }
+     0.462  ucp_tag_recv_nbx 0.120 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.030      NEW ucp_request {38}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.090  }
+     0.050  ucp_tag_send_nbx 0.502 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.030      ucp_tag_send_inline 0.442 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     0.442      }
+     0.030  }
+     1.756  ucp_eager_only_handler 0.181 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.050      eager_recv {38}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.040      memcpy_unpack 0.030 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.030      }
+     0.030      complete_tag_recv {38}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.030  }
+     0.080  ucp_request_free 0.050 {                           ucp_request.c:236  ucp_request_free()
+     0.030      FREE {38}                                    ucp_request.inl:238  ucp_request_put()
+     0.020  }
+     0.371  ucp_tag_recv_nbx 0.120 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.020      NEW ucp_request {39}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.100  }
+     0.592  ucp_eager_only_handler 0.181 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.040      eager_recv {39}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.040      memcpy_unpack 0.030 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.030      }
+     0.040      complete_tag_recv {39}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.030  }
+     0.070  ucp_request_free 0.060 {                           ucp_request.c:236  ucp_request_free()
+     0.030      FREE {39}                                    ucp_request.inl:238  ucp_request_put()
+     0.030  }
+     0.130  ucp_tag_recv_nbx 0.130 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.040      NEW ucp_request {40}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.090  }
+     3.021  ucp_eager_only_handler 0.191 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.050      eager_recv {40}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.030      memcpy_unpack 0.040 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.040      }
+     0.030      complete_tag_recv {40}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.040  }
+     0.060  ucp_request_free 0.060 {                           ucp_request.c:236  ucp_request_free()
+     0.030      FREE {40}                                    ucp_request.inl:238  ucp_request_put()
+     0.030  }
+     0.201  ucp_eager_only_handler 0.100 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.100  }
+     0.130  ucp_tag_recv_nbx 0.261 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.030      NEW ucp_request {41}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.060      eager_only_match {41}                             tag_recv.c:81   ucp_tag_recv_common()
+     0.050      memcpy_unpack 0.030 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.030      }
+     0.050      complete_imm_tag_recv {41}                        tag_recv.c:103  ucp_tag_recv_common()
+     0.040  }
+     0.030  ucp_request_free 0.060 {                           ucp_request.c:236  ucp_request_free()
+     0.030      FREE {41}                                    ucp_request.inl:238  ucp_request_put()
+     0.030  }
+     0.723  ucp_tag_recv_nbx 0.120 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.020      NEW ucp_request {42}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.100  }
+     0.050  ucp_tag_send_nbx 0.271 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.030      ucp_tag_send_inline 0.221 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     0.221      }
+     0.020  }
+     0.231  ucp_eager_only_handler 0.191 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.050      eager_recv {42}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.030      memcpy_unpack 0.050 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.050      }
+     0.030      complete_tag_recv {42}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.030  }
+     0.080  ucp_request_free 0.070 {                           ucp_request.c:236  ucp_request_free()
+     0.050      FREE {42}                                    ucp_request.inl:238  ucp_request_put()
+     0.020  }
+     3.192  ucp_tag_recv_nbx 0.120 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.030      NEW ucp_request {43}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.090  }
+     0.060  ucp_tag_send_nbx 0.211 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.040      ucp_tag_send_inline 0.141 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     0.141      }
+     0.030  }
+     2.339  ucp_eager_only_handler 0.191 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.050      eager_recv {43}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.030      memcpy_unpack 0.040 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.040      }
+     0.040      complete_tag_recv {43}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.030  }
+     0.080  ucp_request_free 0.060 {                           ucp_request.c:236  ucp_request_free()
+     0.030      FREE {43}                                    ucp_request.inl:238  ucp_request_put()
+     0.030  }
+  2374.207  ucp_tag_recv_nbx 1.686 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.703      NEW ucp_request {44}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.984  }
+     0.281  ucp_tag_send_nbx 1.164 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.231      ucp_tag_send_inline 0.883 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     0.883      }
+     0.050  }
+     2.138  ucp_eager_only_handler 1.174 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.381      eager_recv {44}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.141      memcpy_unpack 0.151 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.151      }
+     0.151      complete_tag_recv {44}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.351  }
+     0.291  ucp_request_free 0.472 {                           ucp_request.c:236  ucp_request_free()
+     0.030      FREE {44}                                    ucp_request.inl:238  ucp_request_put()
+     0.442  }
+    80.597  ucp_tag_recv_nbx 0.161 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.040      NEW ucp_request {45}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.120  }
+     0.050  ucp_tag_send_nbx 1.465 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.030      ucp_tag_send_inline 1.415 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     1.415      }
+     0.020  }
+     4.657  ucp_eager_only_handler 0.391 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.151      eager_recv {45}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.040      memcpy_unpack 0.060 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.060      }
+     0.110      complete_tag_recv {45}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.030  }
+     0.080  ucp_request_free 0.060 {                           ucp_request.c:236  ucp_request_free()
+     0.030      FREE {45}                                    ucp_request.inl:238  ucp_request_put()
+     0.030  }
+     4.416  ucp_tag_recv_nbx 0.130 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.030      NEW ucp_request {46}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.100  }
+     0.060  ucp_tag_send_nbx 0.291 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.020      ucp_tag_send_inline 0.241 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     0.241      }
+     0.030  }
+     0.221  ucp_eager_only_handler 0.201 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.050      eager_recv {46}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.040      memcpy_unpack 0.040 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.040      }
+     0.030      complete_tag_recv {46}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.040  }
+     0.080  ucp_request_free 0.060 {                           ucp_request.c:236  ucp_request_free()
+     0.030      FREE {46}                                    ucp_request.inl:238  ucp_request_put()
+     0.030  }
+   600.934  ucp_tag_send_nb 2.660 {                               tag_send.c:179  ucp_tag_send_nb()
+     0.271      ucp_tag_send_nbx 2.359 {                          tag_send.c:231  ucp_tag_send_nbx()
+     0.351          ucp_tag_send_inline 1.957 {                   tag_send.c:266  ucp_tag_send_nbx_inner()
+     1.957          }
+     0.050      }
+     0.030  }
+     0.371  ucp_tag_recv_nb 1.164 {                               tag_recv.c:207  ucp_tag_recv_nb()
+     0.281      ucp_tag_recv_nbx 0.823 {                          tag_recv.c:224  ucp_tag_recv_nbx()
+     0.261          NEW ucp_request {47}                          tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.562      }
+     0.060  }
+     9.515  ucp_tag_send_nb 0.281 {                               tag_send.c:179  ucp_tag_send_nb()
+     0.040      ucp_tag_send_nbx 0.211 {                          tag_send.c:231  ucp_tag_send_nbx()
+     0.030          ucp_tag_send_inline 0.151 {                   tag_send.c:266  ucp_tag_send_nbx_inner()
+     0.151          }
+     0.030      }
+     0.030  }
+     0.050  ucp_tag_recv_nb 0.281 {                               tag_recv.c:207  ucp_tag_recv_nb()
+     0.030      ucp_tag_recv_nbx 0.231 {                          tag_recv.c:224  ucp_tag_recv_nbx()
+     0.030          NEW ucp_request {48}                          tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.201      }
+     0.020  }
+   150.454  ucp_eager_only_handler 0.893 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.381      eager_recv {47}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.080      memcpy_unpack 0.251 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.251      }
+     0.060      complete_tag_recv {47}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.120  }
+     0.211  ucp_request_free 0.100 {                           ucp_request.c:236  ucp_request_free()
+     0.040      FREE {47}                                    ucp_request.inl:238  ucp_request_put()
+     0.060  }
+     4.758  ucp_eager_only_handler 0.201 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.070      eager_recv {48}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.040      memcpy_unpack 0.030 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.030      }
+     0.040      complete_tag_recv {48}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.020  }
+     0.080  ucp_request_free 0.060 {                           ucp_request.c:236  ucp_request_free()
+     0.030      FREE {48}                                    ucp_request.inl:238  ucp_request_put()
+     0.030  }
+   489.774  ucp_tag_send_nbx 0.642 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.090      ucp_tag_send_inline 0.522 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     0.522      }
+     0.030  }
+     0.171  ucp_tag_recv_nbx 0.442 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.080      NEW ucp_request {49}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.361  }
+     9.214  ucp_eager_only_handler 0.472 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.201      eager_recv {49}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.060      memcpy_unpack 0.050 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.050      }
+     0.090      complete_tag_recv {49}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.070  }
+     0.241  ucp_request_free 0.080 {                           ucp_request.c:236  ucp_request_free()
+     0.040      FREE {49}                                    ucp_request.inl:238  ucp_request_put()
+     0.040  }
+     1.275  ucp_tag_send_nbx 0.261 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.040      ucp_tag_send_inline 0.201 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     0.201      }
+     0.020  }
+     0.080  ucp_tag_recv_nbx 0.422 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.241      NEW ucp_request {50}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.181  }
+     4.517  ucp_eager_only_handler 0.191 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.050      eager_recv {50}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.040      memcpy_unpack 0.030 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.030      }
+     0.040      complete_tag_recv {50}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.030  }
+     0.120  ucp_request_free 0.050 {                           ucp_request.c:236  ucp_request_free()
+     0.020      FREE {50}                                    ucp_request.inl:238  ucp_request_put()
+     0.030  }
+    29.318  ucp_tag_send_nbx 0.231 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.040      ucp_tag_send_inline 0.171 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     0.171      }
+     0.020  }
+     0.070  ucp_tag_recv_nbx 0.452 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.251      NEW ucp_request {51}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.201  }
+     3.804  ucp_eager_only_handler 0.201 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.050      eager_recv {51}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.050      memcpy_unpack 0.030 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.030      }
+     0.040      complete_tag_recv {51}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.030  }
+     0.130  ucp_request_free 0.050 {                           ucp_request.c:236  ucp_request_free()
+     0.020      FREE {51}                                    ucp_request.inl:238  ucp_request_put()
+     0.030  }
+ 12852.752  ibv_alloc_dm 116.610 {                            ib_mlx5dv_md.c:1992 uct_ib_mlx5_devx_device_mem_alloc()
+   116.610  }
+     1.767  ibv_reg_dm_mr 330.156 {                                  ib_md.c:465  uct_ib_reg_mr()
+   330.156  }
+     1.506  devx_create_mkey 335.616 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   335.616  }
+     0.813  uct_ib_mlx5_devx_reg_atomic_key 113.026 {         ib_mlx5dv_md.c:513  uct_ib_mlx5_devx_reg_atomic_key()
+     0.462      devx_create_mkey 112.424 {                    ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   112.424      }
+     0.141  }
+   295.368  ibv_dereg_mr 3300.279 {                                  ib_md.c:515  uct_ib_dereg_mr()
+  3300.279  }
+     0.110  ibv_free_dm 72.276 {                              ib_mlx5dv_md.c:2079 uct_ib_mlx5_devx_device_mem_free()
+    72.276  }
+     0.361  ibv_reg_mr 24.079 {                                      ib_md.c:476  uct_ib_reg_mr()
+    24.079  }
+     0.462  devx_create_mkey 328.330 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   328.330  }
+  8183.289  ibv_alloc_dm 75.488 {                             ib_mlx5dv_md.c:1992 uct_ib_mlx5_devx_device_mem_alloc()
+    75.488  }
+     1.164  ibv_reg_dm_mr 227.508 {                                  ib_md.c:465  uct_ib_reg_mr()
+   227.508  }
+     0.933  devx_create_mkey 309.731 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   309.731  }
+     0.311  uct_ib_mlx5_devx_reg_atomic_key 97.399 {          ib_mlx5dv_md.c:513  uct_ib_mlx5_devx_reg_atomic_key()
+     0.522      devx_create_mkey 96.716 {                     ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+    96.716      }
+     0.161  }
+   192.108  ibv_dereg_mr 3507.272 {                                  ib_md.c:515  uct_ib_dereg_mr()
+  3507.272  }
+     0.090  ibv_free_dm 60.392 {                              ib_mlx5dv_md.c:2079 uct_ib_mlx5_devx_device_mem_free()
+    60.392  }
+     0.391  ibv_reg_mr 24.651 {                                      ib_md.c:476  uct_ib_reg_mr()
+    24.651  }
+     0.642  devx_create_mkey 313.154 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   313.154  }
+ 20406.532  ibv_dereg_mr 13.741 {                                    ib_md.c:515  uct_ib_dereg_mr()
+    13.741  }
+  7306.940  ibv_alloc_dm 55.043 {                             ib_mlx5dv_md.c:1992 uct_ib_mlx5_devx_device_mem_alloc()
+    55.043  }
+     1.154  ibv_reg_dm_mr 171.462 {                                  ib_md.c:465  uct_ib_reg_mr()
+   171.462  }
+     0.943  devx_create_mkey 205.959 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   205.959  }
+     0.281  uct_ib_mlx5_devx_reg_atomic_key 317.570 {         ib_mlx5dv_md.c:513  uct_ib_mlx5_devx_reg_atomic_key()
+     0.482      devx_create_mkey 316.928 {                    ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   316.928      }
+     0.161  }
+   180.304  ibv_dereg_mr 3999.866 {                                  ib_md.c:515  uct_ib_dereg_mr()
+  3999.866  }
+     0.070  ibv_free_dm 69.516 {                              ib_mlx5dv_md.c:2079 uct_ib_mlx5_devx_device_mem_free()
+    69.516  }
+     1.204  ibv_reg_mr 26.237 {                                      ib_md.c:476  uct_ib_reg_mr()
+    26.237  }
+     0.482  devx_create_mkey 216.779 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   216.779  }
+  7730.210  ibv_alloc_dm 63.805 {                             ib_mlx5dv_md.c:1992 uct_ib_mlx5_devx_device_mem_alloc()
+    63.805  }
+     1.204  ibv_reg_dm_mr 238.790 {                                  ib_md.c:465  uct_ib_reg_mr()
+   238.790  }
+     0.843  devx_create_mkey 317.319 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   317.319  }
+     0.331  uct_ib_mlx5_devx_reg_atomic_key 102.498 {         ib_mlx5dv_md.c:513  uct_ib_mlx5_devx_reg_atomic_key()
+     0.482      devx_create_mkey 101.875 {                    ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   101.875      }
+     0.141  }
+   210.154  ibv_dereg_mr 3042.730 {                                  ib_md.c:515  uct_ib_dereg_mr()
+  3042.730  }
+     0.100  ibv_free_dm 59.509 {                              ib_mlx5dv_md.c:2079 uct_ib_mlx5_devx_device_mem_free()
+    59.509  }
+     0.381  ibv_reg_mr 22.684 {                                      ib_md.c:476  uct_ib_reg_mr()
+    22.684  }
+     0.532  devx_create_mkey 322.950 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   322.950  }
+   229.897  ibv_dereg_mr 13.791 {                                    ib_md.c:515  uct_ib_dereg_mr()
+    13.791  }
+  7388.882  ibv_alloc_dm 61.246 {                             ib_mlx5dv_md.c:1992 uct_ib_mlx5_devx_device_mem_alloc()
+    61.246  }
+     1.064  ibv_reg_dm_mr 216.367 {                                  ib_md.c:465  uct_ib_reg_mr()
+   216.367  }
+     0.833  devx_create_mkey 311.146 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   311.146  }
+     0.281  uct_ib_mlx5_devx_reg_atomic_key 104.214 {         ib_mlx5dv_md.c:513  uct_ib_mlx5_devx_reg_atomic_key()
+     0.472      devx_create_mkey 103.592 {                    ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   103.592      }
+     0.151  }
+   191.897  ibv_dereg_mr 3095.826 {                                  ib_md.c:515  uct_ib_dereg_mr()
+  3095.826  }
+     0.090  ibv_free_dm 58.064 {                              ib_mlx5dv_md.c:2079 uct_ib_mlx5_devx_device_mem_free()
+    58.064  }
+     0.351  ibv_reg_mr 20.104 {                                      ib_md.c:476  uct_ib_reg_mr()
+    20.104  }
+     0.492  devx_create_mkey 313.866 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   313.866  }
+   217.491  ibv_dereg_mr 11.974 {                                    ib_md.c:515  uct_ib_dereg_mr()
+    11.974  }
+  7172.294  ibv_alloc_dm 53.658 {                             ib_mlx5dv_md.c:1992 uct_ib_mlx5_devx_device_mem_alloc()
+    53.658  }
+     1.054  ibv_reg_dm_mr 167.196 {                                  ib_md.c:465  uct_ib_reg_mr()
+   167.196  }
+     0.933  devx_create_mkey 219.529 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   219.529  }
+     0.311  uct_ib_mlx5_devx_reg_atomic_key 325.840 {         ib_mlx5dv_md.c:513  uct_ib_mlx5_devx_reg_atomic_key()
+     0.532      devx_create_mkey 325.138 {                    ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   325.138      }
+     0.171  }
+   155.282  ibv_dereg_mr 3303.170 {                                  ib_md.c:515  uct_ib_dereg_mr()
+  3303.170  }
+     0.090  ibv_free_dm 50.215 {                              ib_mlx5dv_md.c:2079 uct_ib_mlx5_devx_device_mem_free()
+    50.215  }
+     0.703  ibv_reg_mr 23.838 {                                      ib_md.c:476  uct_ib_reg_mr()
+    23.838  }
+     0.452  devx_create_mkey 208.729 {                        ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   208.729  }
+   187.049  ibv_dereg_mr 13.530 {                                    ib_md.c:515  uct_ib_dereg_mr()
+    13.530  }
+  2328.820  uct_iface_mp_chunk_alloc 19.492 {                      uct_mem.c:446  uct_iface_mp_chunk_alloc()
+    19.492  }
+   715.616  uct_iface_mp_chunk_alloc 1016.043 {                    uct_mem.c:446  uct_iface_mp_chunk_alloc()
+  1016.043  }
+  1912.536  ibv_create_qp_ex 717.192 {                            ib_iface.c:1175 uct_ib_iface_create_qp()
+   717.192  }
+  1464.636  ibv_create_qp_ex 503.716 {                            ib_iface.c:1175 uct_ib_iface_create_qp()
+   503.716  }
+   694.529  uct_iface_mp_chunk_alloc 71.152 {                      uct_mem.c:446  uct_iface_mp_chunk_alloc()
+    18.358      ibv_reg_mr 52.524 {                                  ib_md.c:476  uct_ib_reg_mr()
+    52.524      }
+     0.271  }
+ 10852.202  uct_iface_mp_chunk_alloc 3800.913 {                    uct_mem.c:446  uct_iface_mp_chunk_alloc()
+    20.154      ibv_reg_mr 3779.023 {                                ib_md.c:476  uct_ib_reg_mr()
+  3779.023      }
+     1.736  }
+  3269.154  ibv_create_qp_ex 461.400 {                             ud_mlx5.c:944  uct_ud_mlx5dv_calc_tx_wqe_ratio()
+   461.400  }
+  1570.526  ibv_create_qp_ex 492.745 {                            ib_iface.c:1175 uct_ib_iface_create_qp()
+   492.745  }
+   456.341  uct_iface_mp_chunk_alloc 81.490 {                      uct_mem.c:446  uct_iface_mp_chunk_alloc()
+    25.524      ibv_reg_mr 55.705 {                                  ib_md.c:476  uct_ib_reg_mr()
+    55.705      }
+     0.261  }
+  4489.320  ibv_create_qp_ex 553.128 {                            ib_iface.c:1175 uct_ib_iface_create_qp()
+   553.128  }
+  1172.219  ibv_create_qp_ex 388.230 {                            ib_iface.c:1175 uct_ib_iface_create_qp()
+   388.230  }
+   275.605  uct_iface_mp_chunk_alloc 399.522 {                     uct_mem.c:446  uct_iface_mp_chunk_alloc()
+    12.596      ibv_reg_mr 359.404 {                                 ib_md.c:476  uct_ib_reg_mr()
+   359.404      }
+     0.261      ibv_reg_mr 27.070 {                                  ib_md.c:476  uct_ib_reg_mr()
+    27.070      }
+     0.191  }
+  5637.480  uct_iface_mp_chunk_alloc 4565.691 {                    uct_mem.c:446  uct_iface_mp_chunk_alloc()
+    20.074      ibv_reg_mr 3960.491 {                                ib_md.c:476  uct_ib_reg_mr()
+  3960.491      }
+     1.485      ibv_reg_mr 582.797 {                                 ib_md.c:476  uct_ib_reg_mr()
+   582.797      }
+     0.843  }
+  2622.331  ibv_create_qp_ex 366.320 {                             ud_mlx5.c:944  uct_ud_mlx5dv_calc_tx_wqe_ratio()
+   366.320  }
+  1301.485  ibv_create_qp_ex 394.644 {                            ib_iface.c:1175 uct_ib_iface_create_qp()
+   394.644  }
+   278.356  uct_iface_mp_chunk_alloc 385.691 {                     uct_mem.c:446  uct_iface_mp_chunk_alloc()
+    22.573      ibv_reg_mr 337.594 {                                 ib_md.c:476  uct_ib_reg_mr()
+   337.594      }
+     0.351      ibv_reg_mr 24.982 {                                  ib_md.c:476  uct_ib_reg_mr()
+    24.982      }
+     0.191  }
+  5048.690  ucp_tag_recv_nbx 2.590 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.432      NEW ucp_request {52}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     2.158  }
+     3.212  ucp_tag_send_nbx 2.700 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.050      ucp_tag_send_inline 2.489 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     2.489      }
+     0.161  }
+     4.998  ucp_eager_only_handler 2.198 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.612      eager_recv {52}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.181      memcpy_unpack 0.161 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.161      }
+     0.161      complete_tag_recv {52}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     1.084  }
+     2.238  ucp_request_free 0.642 {                           ucp_request.c:236  ucp_request_free()
+     0.361      FREE {52}                                    ucp_request.inl:238  ucp_request_put()
+     0.281  }
+    11.683  ucp_tag_recv_nbx 0.422 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.030      NEW ucp_request {53}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.391  }
+     0.030  ucp_tag_send_nbx 0.281 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.030      ucp_tag_send_inline 0.231 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     0.231      }
+     0.020  }
+     0.301  ucp_eager_only_handler 0.221 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.050      eager_recv {53}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.040      memcpy_unpack 0.060 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.060      }
+     0.030      complete_tag_recv {53}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.040  }
+     0.110  ucp_request_free 0.050 {                           ucp_request.c:236  ucp_request_free()
+     0.030      FREE {53}                                    ucp_request.inl:238  ucp_request_put()
+     0.020  }
+     9.605  ucp_tag_recv_nbx 0.211 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.030      NEW ucp_request {54}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.181  }
+     0.030  ucp_tag_send_nbx 4.958 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.030      ucp_tag_send_inline 0.070 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     0.070      }
+     0.281      ucp_datatype_iter_init 0.231 {               proto_common.inl:287  ucp_proto_request_send_op()
+     0.231      }
+     0.130      ucp_proto_request_lookup_proto 0.642 {       proto_common.inl:242  ucp_proto_request_send_op_common()
+     0.642      }
+     0.341      ucp_request_send 3.172 {                     proto_common.inl:250  ucp_proto_request_send_op_common()
+     3.111          complete_send {0}                        ucp_request.inl:250  ucp_request_complete_send()
+     0.060      }
+     0.060  }
+     8.291  ucp_eager_only_handler 0.321 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.060      eager_recv {54}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.040      memcpy_unpack 0.060 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.060      }
+     0.120      complete_tag_recv {54}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.040  }
+     1.004  ucp_request_free 0.050 {                           ucp_request.c:236  ucp_request_free()
+     0.020      FREE {54}                                    ucp_request.inl:238  ucp_request_put()
+     0.030  }
+  1144.005  uct_iface_mp_chunk_alloc 4566.855 {                    uct_mem.c:446  uct_iface_mp_chunk_alloc()
+    18.679      ibv_reg_mr 3964.767 {                                ib_md.c:476  uct_ib_reg_mr()
+  3964.767      }
+     1.536      ibv_reg_mr 581.011 {                                 ib_md.c:476  uct_ib_reg_mr()
+   581.011      }
+     0.863  }
+   382.188  uct_iface_mp_chunk_alloc 1013.133 {                    uct_mem.c:446  uct_iface_mp_chunk_alloc()
+    80.918      ibv_reg_mr 832.477 {                                 ib_md.c:476  uct_ib_reg_mr()
+   832.477      }
+     0.251      ibv_reg_mr 99.316 {                                  ib_md.c:476  uct_ib_reg_mr()
+    99.316      }
+     0.171  }
+  8118.982  NEW ucp_request {55}                             ucp_request.inl:284  ucp_request_mem_alloc()
+    13.580  NEW ucp_request {56}                             ucp_request.inl:284  ucp_request_mem_alloc()
+  1216.100  NEW ucp_request {57}                             ucp_request.inl:284  ucp_request_mem_alloc()
+     3.342  NEW ucp_request {58}                             ucp_request.inl:284  ucp_request_mem_alloc()
+  3324.097  ucs_rcache_lookup_unsafe 1.526 {                      ucp_mm.inl:58   ucp_memh_get()
+     1.526  }
+     6.273  ucs_rcache_create_region 83357.416 {                    rcache.c:1111 ucs_rcache_get()
+     1.977      ucs_rcache_check_overlap 5.390 {                    rcache.c:955  ucs_rcache_create_region()
+     5.390      }
+     2.088      ucs_pgtable_insert 3.162 {                          rcache.c:988  ucs_rcache_create_region()
+     3.162      }
+     2.248      mem_reg 83337.413 {                                 rcache.c:1017 ucs_rcache_create_region()
+     6.213          ibv_reg_mr 63262.693 {                           ib_md.c:476  uct_ib_reg_mr()
+ 63262.693          }
+     6.986          ibv_reg_mr 12410.784 {                           ib_md.c:476  uct_ib_reg_mr()
+ 12410.784          }
+     0.592          ibv_reg_mr 5212.785 {                            ib_md.c:476  uct_ib_reg_mr()
+  5212.785          }
+  2437.360      }
+     5.139  }
+  1014.016  ucp_rkey_pack_memh 443.263 {                          ucp_rkey.c:128  ucp_rkey_pack_memh()
+     6.092      uct_ib_mlx5_devx_reg_atomic_key 436.107 {     ib_mlx5dv_md.c:513  uct_ib_mlx5_devx_reg_atomic_key()
+     3.724          devx_create_mkey 431.931 {                ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   431.931          }
+     0.452      }
+     1.064  }
+    12.235  ucp_ep_rkey_unpack_internal 348.353 {                 ucp_rkey.c:796  ucp_ep_rkey_unpack_internal()
+     4.858      uct_sysv_rkey_unpack 23.466 {                      mm_sysv.c:171  uct_sysv_rkey_unpack()
+    23.466      }
+     3.382      ucp_rkey_proto_resolve 315.703 {                  ucp_rkey.c:752  ucp_rkey_proto_resolve()
+   315.703      }
+     0.943  }
+    10.248  ucs_rcache_lookup_unsafe 4.195 {                      ucp_mm.inl:58   ucp_memh_get()
+     1.214      ucs_pgtable_lookup 2.871 {                        rcache.inl:65   ucs_rcache_lookup_unsafe()
+     2.871      }
+     0.110  }
+     1.104  ucs_pgtable_lookup 1.375 {                              rcache.c:1088 ucs_rcache_get()
+     1.375  }
+     0.181  ucs_rcache_create_region 304.743 {                      rcache.c:1111 ucs_rcache_get()
+     0.703      ucs_rcache_check_overlap 1.646 {                    rcache.c:955  ucs_rcache_create_region()
+     1.646      }
+     0.341      ucs_pgtable_insert 2.730 {                          rcache.c:988  ucs_rcache_create_region()
+     2.730      }
+     0.241      mem_reg 298.871 {                                   rcache.c:1017 ucs_rcache_create_region()
+     1.596          ibv_reg_mr 37.267 {                              ib_md.c:476  uct_ib_reg_mr()
+    37.267          }
+     0.442          ibv_reg_mr 244.089 {                             ib_md.c:476  uct_ib_reg_mr()
+   244.089          }
+     0.120          ibv_reg_mr 13.128 {                              ib_md.c:476  uct_ib_reg_mr()
+    13.128          }
+     2.228      }
+     0.211  }
+     0.833  ucp_rkey_pack_memh 268.569 {                          ucp_rkey.c:128  ucp_rkey_pack_memh()
+     0.341      uct_ib_mlx5_devx_reg_atomic_key 268.027 {     ib_mlx5dv_md.c:513  uct_ib_mlx5_devx_reg_atomic_key()
+     1.345          devx_create_mkey 266.452 {                ib_mlx5dv_md.c:87   uct_ib_mlx5_devx_reg_ksm()
+   266.452          }
+     0.231      }
+     0.201  }
+     0.492  ucp_ep_rkey_unpack_internal 210.375 {                 ucp_rkey.c:796  ucp_ep_rkey_unpack_internal()
+     0.964      ucp_rkey_proto_resolve 209.311 {                  ucp_rkey.c:752  ucp_rkey_proto_resolve()
+   209.311      }
+     0.100  }
+    23.988  ucp_tag_recv_nb 2.399 {                               tag_recv.c:207  ucp_tag_recv_nb()
+     0.080      ucp_tag_recv_nbx 2.288 {                          tag_recv.c:224  ucp_tag_recv_nbx()
+     0.412          NEW ucp_request {59}                          tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     1.877      }
+     0.030  }
+     1.616  ucp_tag_recv_nb 0.261 {                               tag_recv.c:207  ucp_tag_recv_nb()
+     0.030      ucp_tag_recv_nbx 0.201 {                          tag_recv.c:224  ucp_tag_recv_nbx()
+     0.040          NEW ucp_request {60}                          tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.161      }
+     0.030  }
+     1.204  ucp_tag_recv_nb 0.241 {                               tag_recv.c:207  ucp_tag_recv_nb()
+     0.020      ucp_tag_recv_nbx 0.201 {                          tag_recv.c:224  ucp_tag_recv_nbx()
+     0.030          NEW ucp_request {61}                          tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.171      }
+     0.020  }
+     0.813  ucp_tag_recv_nb 0.361 {                               tag_recv.c:207  ucp_tag_recv_nb()
+     0.020      ucp_tag_recv_nbx 0.311 {                          tag_recv.c:224  ucp_tag_recv_nbx()
+     0.030          NEW ucp_request {62}                          tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.281      }
+     0.030  }
+     0.853  ucp_tag_recv_nb 0.251 {                               tag_recv.c:207  ucp_tag_recv_nb()
+     0.020      ucp_tag_recv_nbx 0.211 {                          tag_recv.c:224  ucp_tag_recv_nbx()
+     0.030          NEW ucp_request {63}                          tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.181      }
+     0.020  }
+     0.984  ucp_tag_recv_nb 0.311 {                               tag_recv.c:207  ucp_tag_recv_nb()
+     0.030      ucp_tag_recv_nbx 0.201 {                          tag_recv.c:224  ucp_tag_recv_nbx()
+     0.030          NEW ucp_request {64}                          tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.171      }
+     0.080  }
+     3.413  ucp_tag_recv_nb 0.241 {                               tag_recv.c:207  ucp_tag_recv_nb()
+     0.030      ucp_tag_recv_nbx 0.191 {                          tag_recv.c:224  ucp_tag_recv_nbx()
+     0.030          NEW ucp_request {65}                          tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.161      }
+     0.020  }
+     0.943  ucp_tag_recv_nb 0.241 {                               tag_recv.c:207  ucp_tag_recv_nb()
+     0.030      ucp_tag_recv_nbx 0.191 {                          tag_recv.c:224  ucp_tag_recv_nbx()
+     0.020          NEW ucp_request {66}                          tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.171      }
+     0.020  }
+     1.194  ucp_tag_recv_nb 0.371 {                               tag_recv.c:207  ucp_tag_recv_nb()
+     0.030      ucp_tag_recv_nbx 0.251 {                          tag_recv.c:224  ucp_tag_recv_nbx()
+     0.110          NEW ucp_request {67}                          tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.141      }
+     0.090  }
+     1.204  ucp_tag_recv_nb 0.271 {                               tag_recv.c:207  ucp_tag_recv_nb()
+     0.020      ucp_tag_recv_nbx 0.231 {                          tag_recv.c:224  ucp_tag_recv_nbx()
+     0.110          NEW ucp_request {68}                          tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.120      }
+     0.020  }
+     0.683  ucp_tag_recv_nb 0.301 {                               tag_recv.c:207  ucp_tag_recv_nb()
+     0.020      ucp_tag_recv_nbx 0.181 {                          tag_recv.c:224  ucp_tag_recv_nbx()
+     0.030          NEW ucp_request {69}                          tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.151      }
+     0.100  }
+     0.703  ucp_tag_recv_nb 0.241 {                               tag_recv.c:207  ucp_tag_recv_nb()
+     0.030      ucp_tag_recv_nbx 0.191 {                          tag_recv.c:224  ucp_tag_recv_nbx()
+     0.020          NEW ucp_request {70}                          tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.171      }
+     0.020  }
+     0.652  ucp_tag_recv_nb 0.291 {                               tag_recv.c:207  ucp_tag_recv_nb()
+     0.030      ucp_tag_recv_nbx 0.161 {                          tag_recv.c:224  ucp_tag_recv_nbx()
+     0.030          NEW ucp_request {71}                          tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.130      }
+     0.100  }
+     1.485  ucp_tag_recv_nb 0.221 {                               tag_recv.c:207  ucp_tag_recv_nb()
+     0.020      ucp_tag_recv_nbx 0.171 {                          tag_recv.c:224  ucp_tag_recv_nbx()
+     0.030          NEW ucp_request {72}                          tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.141      }
+     0.030  }
+     0.984  ucp_tag_recv_nb 0.251 {                               tag_recv.c:207  ucp_tag_recv_nb()
+     0.050      ucp_tag_recv_nbx 0.171 {                          tag_recv.c:224  ucp_tag_recv_nbx()
+     0.020          NEW ucp_request {73}                          tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.151      }
+     0.030  }
+     0.923  ucp_tag_recv_nb 0.191 {                               tag_recv.c:207  ucp_tag_recv_nb()
+     0.020      ucp_tag_recv_nbx 0.151 {                          tag_recv.c:224  ucp_tag_recv_nbx()
+     0.030          NEW ucp_request {74}                          tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.120      }
+     0.020  }
+   806.230  NEW ucp_request {75}                             ucp_request.inl:284  ucp_request_mem_alloc()
+     7.859  NEW ucp_request {76}                             ucp_request.inl:284  ucp_request_mem_alloc()
+   235.146  FREE {75}                                        ucp_request.inl:291  ucp_request_mem_free()
+     0.080  FREE {76}                                        ucp_request.inl:291  ucp_request_mem_free()
+    10.248  NEW ucp_request {77}                                ucp_worker.c:3594 ucp_worker_discard_tl_uct_ep()
+     2.690  NEW ucp_request {78}                             ucp_request.inl:284  ucp_request_mem_alloc()
+     1.756  uct_iface_mp_chunk_alloc 1611.397 {                    uct_mem.c:446  uct_iface_mp_chunk_alloc()
+    53.587      ibv_reg_mr 1396.987 {                                ib_md.c:476  uct_ib_reg_mr()
+  1396.987      }
+     0.251      ibv_reg_mr 160.270 {                                 ib_md.c:476  uct_ib_reg_mr()
+   160.270      }
+     0.301  }
+    30.151  FREE {78}                                        ucp_request.inl:291  ucp_request_mem_free()
+    50.265  NEW ucp_request {79}                                ucp_worker.c:3594 ucp_worker_discard_tl_uct_ep()
+  8063.769  FREE {77}                                        ucp_request.inl:238  ucp_request_put()
+     7.267  ucp_tag_send_nbx 2.700 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.040      ucp_tag_send_inline 2.499 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     2.499      }
+     0.161  }
+     0.331  ucp_tag_recv_nbx 1.445 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.120      NEW ucp_request {80}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     1.325  }
+     3.382  FREE {79}                                        ucp_request.inl:238  ucp_request_put()
+    11.211  ucp_eager_only_handler 5.370 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     3.653      eager_recv {80}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.161      memcpy_unpack 0.341 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.341      }
+     0.301      complete_tag_recv {80}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.913  }
+     0.943  ucp_request_free 0.642 {                           ucp_request.c:236  ucp_request_free()
+     0.301      FREE {80}                                    ucp_request.inl:238  ucp_request_put()
+     0.341  }
+     5.320  ucp_tag_send_nbx 0.271 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.030      ucp_tag_send_inline 0.211 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     0.211      }
+     0.030  }
+     0.040  ucp_tag_recv_nbx 0.191 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.040      NEW ucp_request {81}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.151  }
+     3.924  ucp_eager_only_handler 0.542 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.321      eager_recv {81}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.130      memcpy_unpack 0.030 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.030      }
+     0.030      complete_tag_recv {81}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.030  }
+     0.141  ucp_request_free 0.050 {                           ucp_request.c:236  ucp_request_free()
+     0.030      FREE {81}                                    ucp_request.inl:238  ucp_request_put()
+     0.020  }
+     6.905  ucp_tag_send_nbx 0.211 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.020      ucp_tag_send_inline 0.161 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     0.161      }
+     0.030  }
+     0.040  ucp_tag_recv_nbx 0.130 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.030      NEW ucp_request {82}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.100  }
+     3.162  ucp_eager_only_handler 0.472 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.321      eager_recv {82}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.040      memcpy_unpack 0.040 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.040      }
+     0.030      complete_tag_recv {82}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.040  }
+     0.171  ucp_request_free 0.060 {                           ucp_request.c:236  ucp_request_free()
+     0.030      FREE {82}                                    ucp_request.inl:238  ucp_request_put()
+     0.030  }
+    73.280  ucp_tag_recv_nbx 0.361 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.050      NEW ucp_request {83}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.311  }
+     0.181  ucp_tag_send_nbx 0.221 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.040      ucp_tag_send_inline 0.151 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     0.151      }
+     0.030  }
+     0.622  ucp_eager_only_handler 0.371 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.241      eager_recv {83}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.040      memcpy_unpack 0.030 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.030      }
+     0.030      complete_tag_recv {83}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.030  }
+     0.251  ucp_request_free 0.050 {                           ucp_request.c:236  ucp_request_free()
+     0.020      FREE {83}                                    ucp_request.inl:238  ucp_request_put()
+     0.030  }
+     1.756  ucp_tag_recv_nbx 0.110 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.030      NEW ucp_request {84}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.080  }
+     0.030  ucp_tag_send_nbx 0.181 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.020      ucp_tag_send_inline 0.110 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     0.110      }
+     0.050  }
+     1.917  ucp_eager_only_handler 0.321 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.211      eager_recv {84}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.030      memcpy_unpack 0.030 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.030      }
+     0.030      complete_tag_recv {84}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.020  }
+     0.120  ucp_request_free 0.050 {                           ucp_request.c:236  ucp_request_free()
+     0.030      FREE {84}                                    ucp_request.inl:238  ucp_request_put()
+     0.020  }
+     1.506  ucp_tag_recv_nbx 0.211 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.030      NEW ucp_request {85}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.181  }
+     0.030  ucp_tag_send_nbx 0.291 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.020      ucp_tag_send_inline 0.241 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     0.241      }
+     0.030  }
+     0.462  ucp_eager_only_handler 0.562 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.361      eager_recv {85}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.040      memcpy_unpack 0.030 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.030      }
+     0.110      complete_tag_recv {85}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.020  }
+     0.110  ucp_request_free 0.080 {                           ucp_request.c:236  ucp_request_free()
+     0.050      FREE {85}                                    ucp_request.inl:238  ucp_request_put()
+     0.030  }
+     9.706  ucp_ep_rkey_unpack_internal 217.592 {                 ucp_rkey.c:796  ucp_ep_rkey_unpack_internal()
+     1.485      ucp_rkey_proto_resolve 215.996 {                  ucp_rkey.c:752  ucp_rkey_proto_resolve()
+   215.996      }
+     0.110  }
+     1.967  ucp_ep_rkey_unpack_internal 0.873 {                   ucp_rkey.c:796  ucp_ep_rkey_unpack_internal()
+     0.743      ucp_rkey_proto_resolve 0.090 {                    ucp_rkey.c:752  ucp_rkey_proto_resolve()
+     0.090      }
+     0.040  }
+   783.988  ucp_worker_flush_nb 29.037 {                             flush.c:643  ucp_worker_flush_nb()
+     2.108      ucp_worker_flush_nbx 26.508 {                        flush.c:654  ucp_worker_flush_nbx()
+    25.173          NEW ucp_request {86}                             flush.c:625  ucp_worker_flush_nbx_internal()
+     1.335      }
+     0.422  }
+   581.121  ucp_request_free 0.151 {                           ucp_request.c:236  ucp_request_free()
+     0.090      FREE {86}                                    ucp_request.inl:238  ucp_request_put()
+     0.060  }
+   582.777  ucp_tag_recv_nbx 0.502 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.080      NEW ucp_request {87}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.422  }
+     0.120  ucp_tag_send_nbx 0.642 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.060      ucp_tag_send_inline 0.562 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     0.562      }
+     0.020  }
+     0.592  ucp_eager_only_handler 1.044 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.652      eager_recv {87}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.100      memcpy_unpack 0.110 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.110      }
+     0.070      complete_tag_recv {87}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.110  }
+     1.214  ucp_request_free 0.080 {                           ucp_request.c:236  ucp_request_free()
+     0.040      FREE {87}                                    ucp_request.inl:238  ucp_request_put()
+     0.040  }
+     6.574  ucp_tag_recv_nbx 0.231 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.040      NEW ucp_request {88}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.191  }
+     0.060  ucp_tag_send_nbx 0.221 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.040      ucp_tag_send_inline 0.151 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     0.151      }
+     0.030  }
+     2.851  ucp_eager_only_handler 0.422 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.251      eager_recv {88}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.050      memcpy_unpack 0.050 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.050      }
+     0.040      complete_tag_recv {88}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.030  }
+     0.161  ucp_request_free 0.060 {                           ucp_request.c:236  ucp_request_free()
+     0.030      FREE {88}                                    ucp_request.inl:238  ucp_request_put()
+     0.030  }
+ 15765.674  message_rate 15794.571 {                           oshm_get_mr.c:65   message_rate()
+ 15768.796      ucp_worker_flush_nb 8.431 {                          flush.c:643  ucp_worker_flush_nb()
+     0.412          ucp_worker_flush_nbx 7.989 {                     flush.c:654  ucp_worker_flush_nbx()
+     7.989          }
+     0.030      }
+     2.891      ucp_tag_recv_nbx 1.506 {                          tag_recv.c:224  ucp_tag_recv_nbx()
+     0.622          NEW ucp_request {89}                          tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.883      }
+     0.281      ucp_tag_send_nbx 2.559 {                          tag_send.c:231  ucp_tag_send_nbx()
+     0.151          ucp_tag_send_inline 2.278 {                   tag_send.c:257  ucp_tag_send_nbx_inner()
+     2.278          }
+     0.130      }
+     2.339      ucp_eager_only_handler 2.640 {                   eager_rcv.c:138  ucp_eager_only_handler()
+     1.144          eager_recv {89}                              eager_rcv.c:28   ucp_eager_common_matched()
+     0.271          memcpy_unpack 0.241 {                               dt.h:83   ucp_memcpy_unpack()
+     0.241          }
+     0.191          complete_tag_recv {89}                   ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.793      }
+     1.686      ucp_request_free 0.482 {                       ucp_request.c:236  ucp_request_free()
+     0.241          FREE {89}                                ucp_request.inl:238  ucp_request_put()
+     0.241      }
+     2.961  }
+     2.670  ucp_worker_flush_nb 0.883 {                              flush.c:643  ucp_worker_flush_nb()
+     0.201      ucp_worker_flush_nbx 0.662 {                         flush.c:654  ucp_worker_flush_nbx()
+     0.662      }
+     0.020  }
+     0.080  ucp_tag_recv_nbx 0.341 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.040      NEW ucp_request {90}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.301  }
+     0.080  ucp_tag_send_nbx 0.281 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.020      ucp_tag_send_inline 0.221 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     0.221      }
+     0.040  }
+  3467.375  ucp_eager_only_handler 0.642 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.452      eager_recv {90}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.030      memcpy_unpack 0.030 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.030      }
+     0.100      complete_tag_recv {90}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.030  }
+     0.110  ucp_request_free 0.050 {                           ucp_request.c:236  ucp_request_free()
+     0.030      FREE {90}                                    ucp_request.inl:238  ucp_request_put()
+     0.020  }
+    23.627  ucp_worker_flush_nb 0.582 {                              flush.c:643  ucp_worker_flush_nb()
+     0.040      ucp_worker_flush_nbx 0.522 {                         flush.c:654  ucp_worker_flush_nbx()
+     0.522      }
+     0.020  }
+     0.100  ucp_tag_recv_nbx 0.110 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.020      NEW ucp_request {91}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.090  }
+     0.060  ucp_tag_send_nbx 0.191 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.020      ucp_tag_send_inline 0.151 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     0.151      }
+     0.020  }
+     0.241  ucp_eager_only_handler 0.311 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.191      eager_recv {91}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.040      memcpy_unpack 0.020 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.020      }
+     0.030      complete_tag_recv {91}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.030  }
+     0.161  ucp_request_free 0.050 {                           ucp_request.c:236  ucp_request_free()
+     0.020      FREE {91}                                    ucp_request.inl:238  ucp_request_put()
+     0.030  }
+    95.572  ucp_request_cancel 3.684 {                         ucp_request.c:249  ucp_request_cancel()
+     2.048      complete_tag_recv {59}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.683      ucp_request_free 0.130 {                       ucp_request.c:236  ucp_request_free()
+     0.100          FREE {59}                                ucp_request.inl:238  ucp_request_put()
+     0.030      }
+     0.823  }
+     3.533  ucp_request_cancel 0.472 {                         ucp_request.c:249  ucp_request_cancel()
+     0.251      complete_tag_recv {60}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.040      ucp_request_free 0.141 {                       ucp_request.c:236  ucp_request_free()
+     0.120          FREE {60}                                ucp_request.inl:238  ucp_request_put()
+     0.020      }
+     0.040  }
+     0.050  ucp_request_cancel 0.592 {                         ucp_request.c:249  ucp_request_cancel()
+     0.301      complete_tag_recv {61}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.030      ucp_request_free 0.151 {                       ucp_request.c:236  ucp_request_free()
+     0.120          FREE {61}                                ucp_request.inl:238  ucp_request_put()
+     0.030      }
+     0.110  }
+     0.030  ucp_request_cancel 0.422 {                         ucp_request.c:249  ucp_request_cancel()
+     0.241      complete_tag_recv {62}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.030      ucp_request_free 0.040 {                       ucp_request.c:236  ucp_request_free()
+     0.020          FREE {62}                                ucp_request.inl:238  ucp_request_put()
+     0.020      }
+     0.110  }
+     0.130  ucp_request_cancel 0.231 {                         ucp_request.c:249  ucp_request_cancel()
+     0.040      complete_tag_recv {63}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.120      ucp_request_free 0.040 {                       ucp_request.c:236  ucp_request_free()
+     0.020          FREE {63}                                ucp_request.inl:238  ucp_request_put()
+     0.020      }
+     0.030  }
+     0.030  ucp_request_cancel 0.231 {                         ucp_request.c:249  ucp_request_cancel()
+     0.030      complete_tag_recv {64}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.130      ucp_request_free 0.040 {                       ucp_request.c:236  ucp_request_free()
+     0.020          FREE {64}                                ucp_request.inl:238  ucp_request_put()
+     0.020      }
+     0.030  }
+     0.030  ucp_request_cancel 0.241 {                         ucp_request.c:249  ucp_request_cancel()
+     0.151      complete_tag_recv {65}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.020      ucp_request_free 0.050 {                       ucp_request.c:236  ucp_request_free()
+     0.030          FREE {65}                                ucp_request.inl:238  ucp_request_put()
+     0.020      }
+     0.020  }
+     0.030  ucp_request_cancel 0.231 {                         ucp_request.c:249  ucp_request_cancel()
+     0.130      complete_tag_recv {66}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.030      ucp_request_free 0.050 {                       ucp_request.c:236  ucp_request_free()
+     0.030          FREE {66}                                ucp_request.inl:238  ucp_request_put()
+     0.020      }
+     0.020  }
+     0.030  ucp_request_cancel 0.321 {                         ucp_request.c:249  ucp_request_cancel()
+     0.231      complete_tag_recv {67}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.020      ucp_request_free 0.050 {                       ucp_request.c:236  ucp_request_free()
+     0.030          FREE {67}                                ucp_request.inl:238  ucp_request_put()
+     0.020      }
+     0.020  }
+     0.030  ucp_request_cancel 0.221 {                         ucp_request.c:249  ucp_request_cancel()
+     0.130      complete_tag_recv {68}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.030      ucp_request_free 0.040 {                       ucp_request.c:236  ucp_request_free()
+     0.020          FREE {68}                                ucp_request.inl:238  ucp_request_put()
+     0.020      }
+     0.020  }
+     0.040  ucp_request_cancel 0.211 {                         ucp_request.c:249  ucp_request_cancel()
+     0.120      complete_tag_recv {69}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.020      ucp_request_free 0.050 {                       ucp_request.c:236  ucp_request_free()
+     0.030          FREE {69}                                ucp_request.inl:238  ucp_request_put()
+     0.020      }
+     0.020  }
+     0.030  ucp_request_cancel 0.221 {                         ucp_request.c:249  ucp_request_cancel()
+     0.040      complete_tag_recv {70}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.120      ucp_request_free 0.040 {                       ucp_request.c:236  ucp_request_free()
+     0.020          FREE {70}                                ucp_request.inl:238  ucp_request_put()
+     0.020      }
+     0.020  }
+     0.040  ucp_request_cancel 0.231 {                         ucp_request.c:249  ucp_request_cancel()
+     0.141      complete_tag_recv {71}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.020      ucp_request_free 0.050 {                       ucp_request.c:236  ucp_request_free()
+     0.020          FREE {71}                                ucp_request.inl:238  ucp_request_put()
+     0.030      }
+     0.020  }
+     0.030  ucp_request_cancel 0.341 {                         ucp_request.c:249  ucp_request_cancel()
+     0.231      complete_tag_recv {72}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.040      ucp_request_free 0.050 {                       ucp_request.c:236  ucp_request_free()
+     0.020          FREE {72}                                ucp_request.inl:238  ucp_request_put()
+     0.030      }
+     0.020  }
+     0.030  ucp_request_cancel 0.221 {                         ucp_request.c:249  ucp_request_cancel()
+     0.130      complete_tag_recv {73}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.030      ucp_request_free 0.040 {                       ucp_request.c:236  ucp_request_free()
+     0.020          FREE {73}                                ucp_request.inl:238  ucp_request_put()
+     0.020      }
+     0.020  }
+     0.040  ucp_request_cancel 0.141 {                         ucp_request.c:249  ucp_request_cancel()
+     0.040      complete_tag_recv {74}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.030      ucp_request_free 0.050 {                       ucp_request.c:236  ucp_request_free()
+     0.030          FREE {74}                                ucp_request.inl:238  ucp_request_put()
+     0.020      }
+     0.020  }
+     1.365  ucp_worker_flush_nb 0.783 {                              flush.c:643  ucp_worker_flush_nb()
+     0.050      ucp_worker_flush_nbx 0.713 {                         flush.c:654  ucp_worker_flush_nbx()
+     0.713      }
+     0.020  }
+     7.889  uct_sysv_rkey_release 185.945 {                        mm_sysv.c:190  uct_sysv_rkey_release()
+   185.945  }
+     9.224  ucp_worker_flush_nb 0.823 {                              flush.c:643  ucp_worker_flush_nb()
+     0.030      ucp_worker_flush_nbx 0.763 {                         flush.c:654  ucp_worker_flush_nbx()
+     0.763      }
+     0.030  }
+ 13612.893  ucp_tag_recv_nbx 0.793 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.151      NEW ucp_request {92}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.642  }
+     0.090  ucp_tag_send_nbx 1.265 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.110      ucp_tag_send_inline 1.114 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     1.114      }
+     0.040  }
+     1.506  ucp_eager_only_handler 0.793 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.381      eager_recv {92}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.060      memcpy_unpack 0.090 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.090      }
+     0.090      complete_tag_recv {92}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.171  }
+     1.395  ucp_request_free 0.161 {                           ucp_request.c:236  ucp_request_free()
+     0.020      FREE {92}                                    ucp_request.inl:238  ucp_request_put()
+     0.141  }
+    15.146  NEW ucp_request {93}                                     flush.c:388  ucp_ep_flush_internal()
+     2.830  FREE {93}                                        ucp_request.inl:238  ucp_request_put()
+    12.647  NEW ucp_request {94}                                     flush.c:388  ucp_ep_flush_internal()
+     0.251  FREE {94}                                        ucp_request.inl:238  ucp_request_put()
+     1.154  ucp_tag_recv_nbx 0.120 {                              tag_recv.c:224  ucp_tag_recv_nbx()
+     0.030      NEW ucp_request {95}                              tag_recv.c:240  ucp_tag_recv_nbx_inner()
+     0.090  }
+     0.100  ucp_tag_send_nbx 0.191 {                              tag_send.c:231  ucp_tag_send_nbx()
+     0.020      ucp_tag_send_inline 0.151 {                       tag_send.c:257  ucp_tag_send_nbx_inner()
+     0.151      }
+     0.020  }
+     0.241  ucp_eager_only_handler 0.261 {                       eager_rcv.c:138  ucp_eager_only_handler()
+     0.141      eager_recv {95}                                  eager_rcv.c:28   ucp_eager_common_matched()
+     0.030      memcpy_unpack 0.030 {                                   dt.h:83   ucp_memcpy_unpack()
+     0.030      }
+     0.030      complete_tag_recv {95}                       ucp_request.inl:266  ucp_request_complete_tag_recv()
+     0.030  }
+     0.141  ucp_request_free 0.050 {                           ucp_request.c:236  ucp_request_free()
+     0.030      FREE {95}                                    ucp_request.inl:238  ucp_request_put()
+     0.020  }
+ 14120.051  uct_iface_mp_chunk_release 306.931 {                   uct_mem.c:478  uct_iface_mp_chunk_release()
+   306.931  }
+   209.020  uct_iface_mp_chunk_release 351.917 {                   uct_mem.c:478  uct_iface_mp_chunk_release()
+   351.917  }
+  1243.371  uct_iface_mp_chunk_release 47.906 {                    uct_mem.c:478  uct_iface_mp_chunk_release()
+     3.142      ibv_dereg_mr 33.584 {                                ib_md.c:515  uct_ib_dereg_mr()
+    33.584      }
+    11.181  }
+  3697.934  uct_iface_mp_chunk_release 160.461 {                   uct_mem.c:478  uct_iface_mp_chunk_release()
+     0.432      ibv_dereg_mr 108.530 {                               ib_md.c:515  uct_ib_dereg_mr()
+   108.530      }
+    51.500  }
+  2590.082  uct_iface_mp_chunk_release 28.515 {                    uct_mem.c:478  uct_iface_mp_chunk_release()
+     0.442      ibv_dereg_mr 18.990 {                                ib_md.c:515  uct_ib_dereg_mr()
+    18.990      }
+     9.083  }
+  2251.234  uct_iface_mp_chunk_release 389.635 {                   uct_mem.c:478  uct_iface_mp_chunk_release()
+     0.472      ibv_dereg_mr 33.483 {                                ib_md.c:515  uct_ib_dereg_mr()
+    33.483      }
+     0.080      ibv_dereg_mr 336.078 {                               ib_md.c:515  uct_ib_dereg_mr()
+   336.078      }
+    19.522  }
+  2091.415  uct_iface_mp_chunk_release 407.863 {                   uct_mem.c:478  uct_iface_mp_chunk_release()
+     0.341      ibv_dereg_mr 115.857 {                               ib_md.c:515  uct_ib_dereg_mr()
+   115.857      }
+     0.110      ibv_dereg_mr 242.333 {                               ib_md.c:515  uct_ib_dereg_mr()
+   242.333      }
+    49.221  }
+  2551.430  uct_iface_mp_chunk_release 238.770 {                   uct_mem.c:478  uct_iface_mp_chunk_release()
+     0.351      ibv_dereg_mr 40.519 {                                ib_md.c:515  uct_ib_dereg_mr()
+    40.519      }
+     0.100      ibv_dereg_mr 180.375 {                               ib_md.c:515  uct_ib_dereg_mr()
+   180.375      }
+    17.424  }
+    71.624  uct_iface_mp_chunk_release 398.548 {                   uct_mem.c:478  uct_iface_mp_chunk_release()
+     0.261      ibv_dereg_mr 106.131 {                               ib_md.c:515  uct_ib_dereg_mr()
+   106.131      }
+     0.100      ibv_dereg_mr 243.919 {                               ib_md.c:515  uct_ib_dereg_mr()
+   243.919      }
+    48.137  }
+   541.094  uct_iface_mp_chunk_release 212.493 {                   uct_mem.c:478  uct_iface_mp_chunk_release()
+     0.321      ibv_dereg_mr 26.749 {                                ib_md.c:515  uct_ib_dereg_mr()
+    26.749      }
+     0.090      ibv_dereg_mr 173.800 {                               ib_md.c:515  uct_ib_dereg_mr()
+   173.800      }
+    11.532  }
+    32.791  uct_iface_mp_chunk_release 273.207 {                   uct_mem.c:478  uct_iface_mp_chunk_release()
+     0.271      ibv_dereg_mr 56.950 {                                ib_md.c:515  uct_ib_dereg_mr()
+    56.950      }
+     0.100      ibv_dereg_mr 189.980 {                               ib_md.c:515  uct_ib_dereg_mr()
+   189.980      }
+    25.905  }
+     0.191  uct_iface_mp_chunk_release 227.368 {                   uct_mem.c:478  uct_iface_mp_chunk_release()
+     0.311      ibv_dereg_mr 25.544 {                                ib_md.c:515  uct_ib_dereg_mr()
+    25.544      }
+     0.070      ibv_dereg_mr 180.063 {                               ib_md.c:515  uct_ib_dereg_mr()
+   180.063      }
+    21.379  }
+  1151.121  mem_dereg 7928.651 {                                    rcache.c:430  ucs_mem_region_destroy_internal()
+     8.572      ibv_dereg_mr 3203.191 {                              ib_md.c:515  uct_ib_dereg_mr()
+  3203.191      }
+   186.055      ibv_dereg_mr 882.411 {                               ib_md.c:515  uct_ib_dereg_mr()
+   882.411      }
+     0.151      ibv_dereg_mr 3642.690 {                              ib_md.c:515  uct_ib_dereg_mr()
+  3642.690      }
+     5.581  }
+    17.203  mem_dereg 4087.861 {                                    rcache.c:430  ucs_mem_region_destroy_internal()
+     0.371      ibv_dereg_mr 17.414 {                                ib_md.c:515  uct_ib_dereg_mr()
+    17.414      }
+   200.348      ibv_dereg_mr 13.289 {                                ib_md.c:515  uct_ib_dereg_mr()
+    13.289      }
+     0.060      ibv_dereg_mr 3855.665 {                              ib_md.c:515  uct_ib_dereg_mr()
+  3855.665      }
+     0.713  }
+   668.453  ibv_dereg_mr 24.300 {                                    ib_md.c:515  uct_ib_dereg_mr()
+    24.300  }
+  5061.447  ibv_dereg_mr 16.180 {                                    ib_md.c:515  uct_ib_dereg_mr()
+    16.180  }
+  1983.267  NEW ucp_request {96}                                     flush.c:388  ucp_ep_flush_internal()
+    18.418  complete_send {96}                               ucp_request.inl:250  ucp_request_complete_send()
+     1.787  ucp_request_free 0.662 {                           ucp_request.c:236  ucp_request_free()
+     0.371      FREE {96}                                    ucp_request.inl:238  ucp_request_put()
+     0.291  }
+     0.191  NEW ucp_request {97}                                     flush.c:388  ucp_ep_flush_internal()
+     1.074  FREE {97}                                        ucp_request.inl:238  ucp_request_put()
+ 58914.062  uct_iface_mp_chunk_release 365.095 {                   uct_mem.c:478  uct_iface_mp_chunk_release()
+   365.095  }
+   387.417  uct_iface_mp_chunk_release 433.758 {                   uct_mem.c:478  uct_iface_mp_chunk_release()
+   433.758  }
+  2645.025  uct_iface_mp_chunk_release 45.498 {                    uct_mem.c:478  uct_iface_mp_chunk_release()
+     1.295      ibv_dereg_mr 33.503 {                                ib_md.c:515  uct_ib_dereg_mr()
+    33.503      }
+    10.699  }
+  5761.436  uct_iface_mp_chunk_release 163.422 {                   uct_mem.c:478  uct_iface_mp_chunk_release()
+     0.412      ibv_dereg_mr 111.952 {                               ib_md.c:515  uct_ib_dereg_mr()
+   111.952      }
+    51.058  }
+  2718.465  uct_iface_mp_chunk_release 34.055 {                    uct_mem.c:478  uct_iface_mp_chunk_release()
+     0.361      ibv_dereg_mr 26.668 {                                ib_md.c:515  uct_ib_dereg_mr()
+    26.668      }
+     7.026  }
+  5160.241  uct_iface_mp_chunk_release 554.413 {                   uct_mem.c:478  uct_iface_mp_chunk_release()
+     0.693      ibv_dereg_mr 30.211 {                                ib_md.c:515  uct_ib_dereg_mr()
+    30.211      }
+     0.090      ibv_dereg_mr 505.191 {                               ib_md.c:515  uct_ib_dereg_mr()
+   505.191      }
+    18.227  }
+  2599.909  uct_iface_mp_chunk_release 401.158 {                   uct_mem.c:478  uct_iface_mp_chunk_release()
+     0.281      ibv_dereg_mr 104.013 {                               ib_md.c:515  uct_ib_dereg_mr()
+   104.013      }
+     0.120      ibv_dereg_mr 256.445 {                               ib_md.c:515  uct_ib_dereg_mr()
+   256.445      }
+    40.298  }
+  2602.257  uct_iface_mp_chunk_release 404.601 {                   uct_mem.c:478  uct_iface_mp_chunk_release()
+     0.351      ibv_dereg_mr 103.180 {                               ib_md.c:515  uct_ib_dereg_mr()
+   103.180      }
+     0.171      ibv_dereg_mr 251.175 {                               ib_md.c:515  uct_ib_dereg_mr()
+   251.175      }
+    49.723  }
+   529.812  uct_iface_mp_chunk_release 214.149 {                   uct_mem.c:478  uct_iface_mp_chunk_release()
+     0.261      ibv_dereg_mr 28.957 {                                ib_md.c:515  uct_ib_dereg_mr()
+    28.957      }
+     0.080      ibv_dereg_mr 173.479 {                               ib_md.c:515  uct_ib_dereg_mr()
+   173.479      }
+    11.372  }
+     8.170  uct_iface_mp_chunk_release 280.544 {                   uct_mem.c:478  uct_iface_mp_chunk_release()
+     0.130      ibv_dereg_mr 59.730 {                                ib_md.c:515  uct_ib_dereg_mr()
+    59.730      }
+     0.080      ibv_dereg_mr 196.414 {                               ib_md.c:515  uct_ib_dereg_mr()
+   196.414      }
+    24.189  }
+     0.321  uct_iface_mp_chunk_release 241.680 {                   uct_mem.c:478  uct_iface_mp_chunk_release()
+     0.231      ibv_dereg_mr 24.621 {                                ib_md.c:515  uct_ib_dereg_mr()
+    24.621      }
+     0.090      ibv_dereg_mr 196.644 {                               ib_md.c:515  uct_ib_dereg_mr()
+   196.644      }
+    20.094  }
+  7089.861  uct_iface_mp_chunk_release 272.665 {                   uct_mem.c:478  uct_iface_mp_chunk_release()
+   272.665  }
+   263.742  uct_iface_mp_chunk_release 412.921 {                   uct_mem.c:478  uct_iface_mp_chunk_release()
+   412.921  }
+   812.162  uct_iface_mp_chunk_release 263.822 {                   uct_mem.c:478  uct_iface_mp_chunk_release()
+     0.462      ibv_dereg_mr 28.385 {                                ib_md.c:515  uct_ib_dereg_mr()
+    28.385      }
+     0.100      ibv_dereg_mr 211.108 {                               ib_md.c:515  uct_ib_dereg_mr()
+   211.108      }
+    23.768  }
+  2061.354  uct_iface_mp_chunk_release 389.455 {                   uct_mem.c:478  uct_iface_mp_chunk_release()
+     0.422      ibv_dereg_mr 103.270 {                               ib_md.c:515  uct_ib_dereg_mr()
+   103.270      }
+     0.110      ibv_dereg_mr 239.763 {                               ib_md.c:515  uct_ib_dereg_mr()
+   239.763      }
+    45.889  }
+  2606.694  uct_iface_mp_chunk_release 227.950 {                   uct_mem.c:478  uct_iface_mp_chunk_release()
+     0.401      ibv_dereg_mr 38.281 {                                ib_md.c:515  uct_ib_dereg_mr()
+    38.281      }
+     0.090      ibv_dereg_mr 173.188 {                               ib_md.c:515  uct_ib_dereg_mr()
+   173.188      }
+    15.989  }
+    69.536  uct_iface_mp_chunk_release 363.288 {                   uct_mem.c:478  uct_iface_mp_chunk_release()
+     0.231      ibv_dereg_mr 94.839 {                                ib_md.c:515  uct_ib_dereg_mr()
+    94.839      }
+     0.090      ibv_dereg_mr 225.571 {                               ib_md.c:515  uct_ib_dereg_mr()
+   225.571      }
+    42.557  }
+   539.277  uct_iface_mp_chunk_release 209.442 {                   uct_mem.c:478  uct_iface_mp_chunk_release()
+     0.341      ibv_dereg_mr 28.073 {                                ib_md.c:515  uct_ib_dereg_mr()
+    28.073      }
+     0.070      ibv_dereg_mr 169.484 {                               ib_md.c:515  uct_ib_dereg_mr()
+   169.484      }
+    11.472  }
+     8.070  uct_iface_mp_chunk_release 312.030 {                   uct_mem.c:478  uct_iface_mp_chunk_release()
+     0.281      ibv_dereg_mr 56.829 {                                ib_md.c:515  uct_ib_dereg_mr()
+    56.829      }
+     0.080      ibv_dereg_mr 228.903 {                               ib_md.c:515  uct_ib_dereg_mr()
+   228.903      }
+    25.936  }
+     0.211  uct_iface_mp_chunk_release 203.540 {                   uct_mem.c:478  uct_iface_mp_chunk_release()
+     0.331      ibv_dereg_mr 25.855 {                                ib_md.c:515  uct_ib_dereg_mr()
+    25.855      }
+     0.070      ibv_dereg_mr 153.475 {                               ib_md.c:515  uct_ib_dereg_mr()
+   153.475      }
+    23.808  }
+  3354.368  ibv_dereg_mr 16.079 {                                    ib_md.c:515  uct_ib_dereg_mr()
+    16.079  }
+  1696.330  ibv_dereg_mr 21.188 {                                    ib_md.c:515  uct_ib_dereg_mr()
+    21.188  }
+  1608.466  ibv_dereg_mr 16.250 {                                    ib_md.c:515  uct_ib_dereg_mr()
+    16.250  }
+
+Thread 2 (tid 70887)
+
+     0.000  uct_iface_mp_chunk_alloc 12923.292 {                   uct_mem.c:446  uct_iface_mp_chunk_alloc()
+    17.494      ibv_reg_mr 12592.232 {                               ib_md.c:476  uct_ib_reg_mr()
+ 12592.232      }
+     1.526      ibv_reg_mr 311.387 {                                 ib_md.c:476  uct_ib_reg_mr()
+   311.387      }
+     0.652  }
+   160.682  FREE {0}                                         ucp_request.inl:291  ucp_request_mem_free()
+     0.833  FREE {0}                                         ucp_request.inl:291  ucp_request_mem_free()
+   455.257  NEW ucp_request {1}                              ucp_request.inl:284  ucp_request_mem_alloc()
+     6.223  NEW ucp_request {2}                              ucp_request.inl:284  ucp_request_mem_alloc()
+     2.800  FREE {1}                                         ucp_request.inl:291  ucp_request_mem_free()
+     0.060  FREE {2}                                         ucp_request.inl:291  ucp_request_mem_free()
+206087.510  FREE {0}                                         ucp_request.inl:291  ucp_request_mem_free()
+     0.371  FREE {0}                                         ucp_request.inl:291  ucp_request_mem_free()
+ 59461.599  FREE {0}                                         ucp_request.inl:291  ucp_request_mem_free()
+     0.351  FREE {0}                                         ucp_request.inl:291  ucp_request_mem_free()
+192158.272  uct_iface_mp_chunk_alloc 13683.071 {                   uct_mem.c:446  uct_iface_mp_chunk_alloc()
+   539.207      ibv_reg_mr 12680.106 {                               ib_md.c:476  uct_ib_reg_mr()
+ 12680.106      }
+     1.686      ibv_reg_mr 461.069 {                                 ib_md.c:476  uct_ib_reg_mr()
+   461.069      }
+     1.004  }
+   184.369  FREE {0}                                         ucp_request.inl:291  ucp_request_mem_free()
+     0.432  FREE {0}                                         ucp_request.inl:291  ucp_request_mem_free()
+    28.525  FREE {0}                                         ucp_request.inl:291  ucp_request_mem_free()
+     0.070  FREE {0}                                         ucp_request.inl:291  ucp_request_mem_free()
+

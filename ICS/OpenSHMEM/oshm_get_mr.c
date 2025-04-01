@@ -62,11 +62,14 @@ char *align_memory(unsigned long address, int const align_size)
     return (char *)((address + (align_size - 1)) / align_size * align_size);
 }
 
-double message_rate(struct pe_vars v, char *buffer, size_t size, int iterations)
+UCS_PROFILE_FUNC(double, message_rate, (v, buffer, size, iterations),
+                 struct pe_vars v, char *buffer, size_t size, int iterations)
 {
     double start, end;
     int i, offset;
     double mr = 0;
+    double total_time = 0.0;
+    double avg_time = 0.0;
 
     memset(buffer, size, MAX_MESSAGE_SIZE * OSHM_LOOP_LARGE_MR);
 
@@ -76,17 +79,25 @@ double message_rate(struct pe_vars v, char *buffer, size_t size, int iterations)
         start = get_microseconds_ts();
         
         for (i = 0, offset = 0; i < iterations; i++, offset += size) {
-            shmem_getmem(&buffer[offset], &buffer[offset], size, v.nxtpe);
+            // shmem_getmem(&buffer[offset], &buffer[offset], size, v.nxtpe);
+            UCS_PROFILE_CODE("shmem_getmem", {
+                shmem_getmem(&buffer[offset], &buffer[offset], size, v.nxtpe);
+            });
+
         }
 
         end = get_microseconds_ts();
 
-        mr = 1e6 * ( ((double)size * iterations)/(1024 * 1024) ) / ((double)end - (double)start);
+        total_time = end - start;
+        avg_time = total_time / iterations;
 
-        printf("PE %d: Message rate for %ld-byte messages: %.6f MB/s\n", v.me, size, mr);
+        mr = 1e6 * ( ((double)size * iterations)/(1024 * 1024) ) / total_time;
+
+        printf("Message Size: %zu bytes, Average Total Time: %.2f us, Average Rate: %.2f MB/s\n",
+               size, avg_time, mr);
     }
 
-    return 0;
+    return mr;
 }
 
 int main(int argc, char **argv) {
