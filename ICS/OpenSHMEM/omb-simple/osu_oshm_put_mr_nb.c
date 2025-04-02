@@ -12,7 +12,7 @@
 #include "osu_util.h"
 
 
-int loop = 10;
+int loop = 1000;
 
 struct pe_vars {
     int me;
@@ -26,8 +26,8 @@ struct pe_vars init_shmem(void)
     struct pe_vars v;
 
     shmem_init();
-    v.me = shmem_mype();
-    v.npes = shmem_num_pes();
+    v.me = shmem_my_pe();
+    v.npes = shmem_n_pes();
 
     v.pairs = v.npes / 2;
     v.nxtpe = v.me < v.pairs ? v.me + v.pairs : v.me - v.pairs;
@@ -106,7 +106,7 @@ double message_rate(struct pe_vars v, char *buffer, unsigned long size,
 void print_message_rate(int myid, unsigned long size, double rate)
 {
     if (myid == 0) {
-        printf("%-*d%*.*f\n", 10, size, FIELD_WIDTH, FLOAT_PRECISION, rate);
+        printf("%-*ld%*.*f\n", 10, size, FIELD_WIDTH, FLOAT_PRECISION, rate);
     }
 }
 
@@ -131,7 +131,13 @@ void benchmark(struct pe_vars v, char *msg_buffer)
      */
     for (size = 1; size <= MAX_MESSAGE_SIZE; size <<= 1) {
         mr = message_rate(v, msg_buffer, size, loop);
-        shmem_double_sum_reduce(SHMEM_TEAM_WORLD, &mr_sum, &mr, 1);
+        // Manual reduction using shmem_double_sum_to_all
+        double pWork[SHMEM_REDUCE_MIN_WRKDATA_SIZE];
+        long int pSync[SHMEM_REDUCE_SYNC_SIZE];
+        for (i = 0; i < SHMEM_REDUCE_SYNC_SIZE; i++) {
+            pSync[i] = SHMEM_SYNC_VALUE;
+        }
+        shmem_double_sum_to_all(&mr_sum, &mr, 1, 0, 0, v.npes, pWork, pSync);
         print_message_rate(v.me, size, mr_sum);
     }
 }

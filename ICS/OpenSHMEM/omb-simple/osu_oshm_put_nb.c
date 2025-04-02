@@ -13,8 +13,8 @@
 #include "osu_util.h"
 
 
-int loop = 10;
-int warmup = 5;
+int loop = 1000;
+int warmup = 500;
 
 int main(int argc, char *argv[])
 {
