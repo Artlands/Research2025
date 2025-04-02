@@ -9,11 +9,7 @@ double get_microsecond_time()
   return retval;
 }
 
-// Function to calculate elapsed time in seconds
-double get_elapsed_time(double start, double end) {
-    return (end - start) / 1e6;
-}
-
+// Function to calculate elapsed time in microseconds
 double get_elapsed_time_micro(double start, double end) {
     return (end - start);
 }
@@ -23,9 +19,9 @@ int main(int argc, char **argv) {
 
     int me = xbrtime_mype();
     int npes = xbrtime_num_pes();
-
-    if (me == 0)
-        printf( "Number of PEs: %d\n", npes);
+    
+    // if (me == 0)
+    //     printf( "Number of PEs: %d\n", npes);
 
     if (npes < 2) {
         if (me == 0) {
@@ -64,7 +60,6 @@ int main(int argc, char **argv) {
     }
 
     double total_time = 0.0;
-    double total_time_micro = 0.0;
 
     for (int r = 0; r < runs; r++) {
         xbrtime_barrier_all(); // Ensure synchronization
@@ -73,24 +68,24 @@ int main(int argc, char **argv) {
         if (me == 0) {
             start = get_microsecond_time();
 
-            // PE 0 gets data to PE 1
-            xbrtime_getmem(recv_buf, send_buf, msg_size, 1);
+            // PE 0 puts data to PE 1
+            xbrtime_putmem(recv_buf, send_buf, msg_size, 1);
+
+            // Wait for completion
+            xbrtime_quiet();
 
             end = get_microsecond_time();
 
-            total_time += get_elapsed_time(start, end);
-            total_time_micro += get_elapsed_time_micro(start, end);
+            total_time += get_elapsed_time_micro(start, end);
         }
 
         xbrtime_barrier_all(); // Ensure synchronization
     }
 
     if (me == 0) {
-        double avg_time = total_time / runs; // Average time per run
-        double avg_time_micro = total_time_micro / runs;
-        double rate = (msg_size / (1024.0 * 1024.0)) / avg_time; // Rate in MB/s
-        printf("Get Message Size: %d bytes, Average Time: %.4f us, Rate: %.2f MB/s\n",
-               msg_size, avg_time_micro, rate);
+        double avg_time = total_time / runs; // Average time 
+        printf("Put Message Size: %d bytes, Average Time: %.4f us\n",
+               msg_size, avg_time);
     }
 
     xbrtime_free(send_buf);

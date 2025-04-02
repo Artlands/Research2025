@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2017-2025 Tactical Computing Laboratories, LLC
+# Copyright (C) 2017-2023 Tactical Computing Laboratories, LLC
 # All Rights Reserved
 # contact@tactcomplabs.com
 #
@@ -23,27 +23,20 @@
 #   <-> is a link
 #   | is a subcomponent relationship
 
-import argparse
 import os
 import sst
 import sys
 
-parser = argparse.ArgumentParser(description="Run Rev SST Simulation")
-parser.add_argument("--program", help="The program executable to run in the simulation", default="a.out")
-parser.add_argument("--args", help="Command line arguments to pass to the target executable", default="")
+if len(sys.argv) != 3:
+  sys.stderr.write("Usage: You must pass the executable and the number of PEs you wish to simulate using the '--model-options' option with sst\n")
+  raise SystemExit(1)
 
-# Parse arguments
-args = parser.parse_args()
-
-# Print arguments nicely
-print("Rev SST Simulation Configuration:")
-for arg in vars(args):
-    print("\t", arg, " = ", getattr(args, arg))
-
-NPES = 2
+PROGRAM = sys.argv[1]
+NPES = int(sys.argv[2])
 CLOCK = "2.5GHz"  
 MEMSIZE = 1024*1024*1024
-SHARED_MEM_SIZE = 1024*1024*16
+SHARED_MEM_SIZE = 1024*1024*64
+
 
 memctrl_params = {
   "clock": CLOCK,
@@ -108,14 +101,13 @@ for i in range(0, NPES):
   xbgas_cpu.addParams({
     "verbose" : VERBOSE,                          # Verbosity
     "clock" : CLOCK,                              # Clock
-    "program" : args.program,                     # Target executable
+    "program" : os.getenv("REV_EXE", PROGRAM),    # Target executable
     "memSize" : MEMSIZE,                          # Memory size in bytes
     "startAddr" : "[0:0x00000000]",               # Starting address for core 0
     "machine" : "[0:RV64GC_Xbgas]",
     "memCost" : "[0:1:10]",                       # Memory loads required 1-10 cycles
     "enable_xbgas" : 1,                           # Enable XBGAS support 
-    "enableMemH": 1,                              # Enable memHierarchy support
-    "args": args.args,                            # Command line arguments
+    "enableMemH": 1,                             # Enable memHierarchy support
     "shared_memory_size": SHARED_MEM_SIZE,        # Shared memory size
     "splash" : 0                                  # Display the splash message
   })

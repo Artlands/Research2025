@@ -14,11 +14,18 @@ double get_elapsed_time(double start, double end) {
     return (end - start) / 1e6;
 }
 
+double get_elapsed_time_micro(double start, double end) {
+    return (end - start);
+}
+
 int main(int argc, char **argv) {
     xbrtime_init();
 
     int me = xbrtime_mype();
     int npes = xbrtime_num_pes();
+
+    if (me == 0)
+        printf( "Number of PEs: %d\n", npes);
 
     if (npes < 2) {
         if (me == 0) {
@@ -40,8 +47,8 @@ int main(int argc, char **argv) {
     int runs = 5; // Number of runs for averaging
 
     // Allocate symmetric memory
-    char *send_buf = xbrtime_malloc(msg_size);
-    char *recv_buf = xbrtime_malloc(msg_size);
+    char *send_buf = (char *)xbrtime_align(8, msg_size);
+    char *recv_buf = (char *)xbrtime_align(8, msg_size);
     if (!send_buf || !recv_buf) {
         if (me == 0) {
             printf("Failed to allocate symmetric memory.\n");
@@ -57,6 +64,7 @@ int main(int argc, char **argv) {
     }
 
     double total_time = 0.0;
+    double total_time_micro = 0.0;
 
     for (int r = 0; r < runs; r++) {
         xbrtime_barrier_all(); // Ensure synchronization
@@ -74,6 +82,7 @@ int main(int argc, char **argv) {
             end = get_microsecond_time();
 
             total_time += get_elapsed_time(start, end);
+            total_time_micro += get_elapsed_time_micro(start, end);
         }
 
         xbrtime_barrier_all(); // Ensure synchronization
@@ -81,9 +90,10 @@ int main(int argc, char **argv) {
 
     if (me == 0) {
         double avg_time = total_time / runs; // Average time per run
+        double avg_time_micro = total_time_micro / runs;
         double rate = (msg_size / (1024.0 * 1024.0)) / avg_time; // Rate in MB/s
-        printf("Put Message Size: %d bytes, Average Time: %.6f s, Rate: %.2f MB/s\n",
-               msg_size, avg_time, rate);
+        printf("Put Message Size: %d bytes, Average Time: %.4f us, Rate: %.2f MB/s\n",
+               msg_size, avg_time_micro, rate);
     }
 
     xbrtime_free(send_buf);

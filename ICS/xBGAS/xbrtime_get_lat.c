@@ -19,6 +19,9 @@ int main(int argc, char **argv) {
 
     int me = xbrtime_mype();
     int npes = xbrtime_num_pes();
+    
+    // if (me == 0)
+    //     printf( "Number of PEs: %d\n", npes);
 
     if (npes < 2) {
         if (me == 0) {
@@ -40,8 +43,8 @@ int main(int argc, char **argv) {
     int runs = 5; // Number of runs for averaging
 
     // Allocate symmetric memory
-    char *send_buf = xbrtime_malloc(msg_size);
-    char *recv_buf = xbrtime_malloc(msg_size);
+    char *send_buf = (char *)xbrtime_align(8, msg_size);
+    char *recv_buf = (char *)xbrtime_align(8, msg_size);
     if (!send_buf || !recv_buf) {
         if (me == 0) {
             printf("Failed to allocate symmetric memory.\n");
