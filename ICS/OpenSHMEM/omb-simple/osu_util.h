@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <sys/time.h>
 #include <stddef.h>
+#include <unistd.h>
 
 #ifndef XBGAS_OSHM_UTIL_H
 #define XBGAS_OSHM_UTIL_H
@@ -39,18 +40,18 @@ void print_data_pgas(int rank, int full, int size, double avg_time,
 
 #define max(a, b) (a > b ? a : b)
 
-#define MESSAGE_ALIGNMENT               8
+#define MESSAGE_ALIGNMENT               64
 #define MESSAGE_ALIGNMENT_MR            (1 << 12)
-#define MAX_MESSAGE_SIZE                (1 << 14)
-#define MAX_MSG_SIZE_PT2PT              (1 << 14)
+#define MAX_MESSAGE_SIZE                (1 << 22)
+#define MAX_MSG_SIZE_PT2PT              (1 << 21)
 #define LARGE_MESSAGE_SIZE              8192
+#define OSHM_LOOP_SMALL_MR              500
+#define OSHM_LOOP_LARGE_MR              50
 #define OSHM_LOOP_SMALL                 1000
 #define OSHM_LOOP_LARGE                 100
 #define OSHM_SKIP_SMALL                 200
 #define OSHM_SKIP_LARGE                 10
-#define OSHM_LOOP_SMALL_MR              100
-#define OSHM_LOOP_LARGE_MR              10
-#define OSHM_LOOP_ATOMIC                100
+#define OSHM_LOOP_ATOMIC                500
 
 #define MYBUFSIZE                       MAX_MESSAGE_SIZE
 

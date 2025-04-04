@@ -12,8 +12,6 @@
 #include "osu_util.h"
 
 
-int loop = 1000;
-
 struct pe_vars {
     int me;
     int npes;
@@ -58,7 +56,7 @@ char *allocate_memory(int me, long align_size)
 {
     char *msg_buffer;
 
-    msg_buffer = (char *)shmem_malloc(MAX_MESSAGE_SIZE * loop + align_size);
+    msg_buffer = (char *)shmem_malloc(MAX_MESSAGE_SIZE * OSHM_LOOP_LARGE_MR + align_size);
 
     if (NULL == msg_buffer) {
         printf("Failed to shmem_align (pe: %d)\n", me);
@@ -81,7 +79,7 @@ double message_rate(struct pe_vars v, char *buffer, unsigned long size,
     double rate;
     int i, offset;
 
-    memset(buffer, size, MAX_MESSAGE_SIZE * loop);
+    memset(buffer, size, MAX_MESSAGE_SIZE * OSHM_LOOP_LARGE_MR);
 
     shmem_barrier_all();
 
@@ -110,15 +108,19 @@ void print_message_rate(int myid, unsigned long size, double rate)
 }
 
 void benchmark(struct pe_vars v, char *msg_buffer)
-{
+{   
+    static double pwrk[_SHMEM_REDUCE_MIN_WRKDATA_SIZE];
+    static long psync[_SHMEM_REDUCE_SYNC_SIZE];
     static double mr, mr_sum;
     unsigned long size, i;
+
+    memset(psync, _SHMEM_SYNC_VALUE, sizeof(long[_SHMEM_REDUCE_SYNC_SIZE]));
 
     /*
      * Warmup
      */
     if (v.me < v.pairs) {
-        for (i = 0; i < (MAX_MESSAGE_SIZE * loop); i += MAX_MESSAGE_SIZE) {
+        for (i = 0; i < (MAX_MESSAGE_SIZE * OSHM_LOOP_LARGE_MR); i += MAX_MESSAGE_SIZE) {
             shmem_putmem(&msg_buffer[i], &msg_buffer[i], MAX_MESSAGE_SIZE, v.nxtpe);
         }
     }
@@ -129,14 +131,10 @@ void benchmark(struct pe_vars v, char *msg_buffer)
      * Benchmark
      */
     for (size = 1; size <= MAX_MESSAGE_SIZE; size <<= 1) {
-        mr = message_rate(v, msg_buffer, size, loop);
-        // Manual reduction using shmem_double_sum_to_all
-        double pWork[SHMEM_REDUCE_MIN_WRKDATA_SIZE];
-        long int pSync[SHMEM_REDUCE_SYNC_SIZE];
-        for (i = 0; i < SHMEM_REDUCE_SYNC_SIZE; i++) {
-            pSync[i] = SHMEM_SYNC_VALUE;
-        }
-        shmem_double_sum_to_all(&mr_sum, &mr, 1, 0, 0, v.npes, pWork, pSync);
+        i = size < LARGE_MESSAGE_SIZE ? OSHM_LOOP_SMALL_MR : OSHM_LOOP_LARGE_MR;
+
+        mr = message_rate(v, msg_buffer, size, i);
+        shmem_double_sum_to_all(&mr_sum, &mr, 1, 0, 0, v.npes, pwrk, psync);
         print_message_rate(v.me, size, mr_sum);
     }
 }
@@ -157,13 +155,13 @@ int main(int argc, char *argv[])
     /*
      * Allocate Memory
      */
-    alignment = 8;
+    alignment = sysconf(_SC_PAGESIZE);
     msg_buffer = allocate_memory(v.me, alignment);
     aligned_buffer = align_memory((unsigned long)msg_buffer, alignment);
-    memset(aligned_buffer, 0, MAX_MESSAGE_SIZE * loop);
+    memset(aligned_buffer, 0, MAX_MESSAGE_SIZE * OSHM_LOOP_LARGE_MR);
 
     /*
-     * Time Put Message Rate
+     * Time Get Message Rate
      */
     benchmark(v, aligned_buffer);
 

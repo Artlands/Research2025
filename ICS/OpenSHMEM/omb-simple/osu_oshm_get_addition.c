@@ -1,4 +1,4 @@
-#define BENCHMARK "OSU OpenSHMEM Put_nb Test"
+#define BENCHMARK "OSU OpenSHMEM Get Test"
 
 /*
  * For detailed copyright and licensing information, please refer to the
@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
         printf("%-*s%*s", 10, "# Size", FIELD_WIDTH, "Latency (us)\n");
     }
 
-    for (size = 1; size <= MAX_MSG_SIZE_PT2PT; size <<= 1) {
+    for (size = 1<<21; size <= MAX_MSG_SIZE_PT2PT; size <<= 1) {
         /* touch the data */
         for (i = 0; i < size; i++) {
             s_buf[i] = 'a';
@@ -74,8 +74,7 @@ int main(int argc, char *argv[])
                 if ( i == skip) {
                     t_start = TIME();
                 }
-                shmem_putmem_nbi(r_buf, s_buf, size, 1);
-                shmem_quiet();
+                shmem_getmem(r_buf, s_buf, size, 1);
             }
 
             t_end = TIME();

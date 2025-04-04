@@ -1,0 +1,82 @@
+--------------------------------------------------------------------------
+The Slurm process starter for PRTE detected the presence of an MCA
+parameter in the environment that assigns custom command line arguments
+to the `srun` command used to start PRTE's daemons on remote nodes:
+
+  Paramater value: --external-launcher
+
+This warning is provided to alert you (the user) to a perhaps
+unintentional setting of command line arguments, or the unseen
+overriding of your intended arguments by Slurm.
+
+Background: Starting with Slurm version 23.11, a command line argument
+(`--external-launcher`) was added to `srun` to indicate that the
+command was being initiated from within a third-party launcher (e.g.,
+`prte` or `prterun`). This allows Slurm to essentially freely modify
+the `srun` command line while retaining a backward compatibility
+capability when explicitly told to use it.  Notably, the Slurm
+environment does this by automatically setting the
+PRTE_MCA_plm_slurm_args environment variable to pass in its own
+command line arguments.  This has the side effect of overriding most
+user- or system-level settings.  Note that arguments passed on the
+PRTE command line will override any Slurm setting of the
+PRTE_MCA_plm_slurm_args environment variable, but with potentially
+undesirable side effects if newer versions of `srun` misinterpret or
+fail to understand the user-specified arguments.
+
+If the setting of the MCA parameter was intentional, or if the
+parameter looks acceptable to you, then please set the following
+MCA parameter to disable this warning:
+
+  Environment: PRTE_MCA_plm_slurm_disable_warning=true
+  Cmd line: --prtemca plm_slurm_disable_warning 1
+  Default MCA param file: plm_slurm_disable_warning = true
+
+If you did not intentionally set the identified command line
+arguments and do not wish them to be used, then set the
+following MCA param to have them ignored:
+
+  Environment: PRTE_MCA_plm_slurm_ignore_args=true
+  Cmd line: --prtemca plm_slurm_ignore_args 1
+  Default MCA param file: plm_slurm_ignore_args = true
+
+Note that if you wish to provide custom `srun` command line
+arguments and are finding them being overridden by Slurm, you
+can ensure that your values are used by setting them with the
+following param:
+
+  Environment: PRTE_MCA_plm_slurm_force_args=foo
+  Cmd line: --prtemca plm_slurm_force_args foo
+  Default MCA param file: plm_slurm_force_args = foo
+
+Note that you may need to add the `--external-launcher` option
+to your provided args to ensure that `srun` properly functions
+if you are using a relatively recent release of Slurm.
+--------------------------------------------------------------------------
+# OSU OpenSHMEM Put_nb Test
+# Size           Latency (us)
+1                        2.990
+2                        3.005
+4                        2.995
+8                        2.980
+16                       2.980
+32                       3.000
+64                       2.970
+128                      2.990
+256                      3.270
+512                      3.370
+1024                     3.660
+2048                     4.135
+4096                     4.545
+8192                     5.005
+16384                    5.800
+32768                    7.090
+65536                    9.060
+131072                  11.770
+262144                  18.470
+524288                  31.260
+1048576                 57.240
+PTMALLOC: USAGE ERROR DETECTED: m=0x149f9fbd2480 ptr=0xff0000f0
+PTMALLOC: USAGE ERROR DETECTED: m=0x149f9fbd2480 ptr=0xff4000f0
+PTMALLOC: USAGE ERROR DETECTED: m=0x14c13b4e6480 ptr=0xff0000f0
+PTMALLOC: USAGE ERROR DETECTED: m=0x14c13b4e6480 ptr=0xff4000f0

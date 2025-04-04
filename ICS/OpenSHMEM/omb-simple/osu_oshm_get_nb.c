@@ -12,15 +12,16 @@
 #include <shmem.h>
 #include "osu_util.h"
 
-
-int loop = 1000;
-int warmup = 500;
+int skip = OSHM_SKIP_SMALL;
+int loop = OSHM_SKIP_SMALL;
 
 int main(int argc, char *argv[])
 {
     int myid, numprocs, i;
     int size;
     char *s_buf, *r_buf;
+    char *s_buf_heap, *r_buf_heap;
+    int align_size;
     double t_start = 0, t_end = 0;
 
     shmem_init();
@@ -34,11 +35,18 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;
     }
 
+    align_size = MESSAGE_ALIGNMENT;
 
     /**************Allocating Memory*********************/
 
-    s_buf = (char *)shmem_malloc(MYBUFSIZE);
-    r_buf = (char *)shmem_malloc(MYBUFSIZE);
+    s_buf_heap = (char *)shmalloc(MYBUFSIZE);
+    r_buf_heap = (char *)shmalloc(MYBUFSIZE);
+
+    s_buf = (char *)(((unsigned long)s_buf_heap + (align_size - 1)) /
+                         align_size * align_size);
+
+    r_buf = (char *)(((unsigned long)r_buf_heap + (align_size - 1)) /
+                        align_size * align_size);
 
     /**************Memory Allocation Done*********************/
 
@@ -54,11 +62,16 @@ int main(int argc, char *argv[])
             r_buf[i] = 'b';
         }
 
+        if ( size > LARGE_MESSAGE_SIZE ) {
+            loop = OSHM_LOOP_LARGE;
+            skip = OSHM_SKIP_LARGE;
+        }
+
         shmem_barrier_all();
 
         if (myid == 0) {
-            for (i = 0; i < warmup + loop; i++) {
-                if ( i == warmup) {
+            for (i = 0; i < loop + skip; i++) {
+                if ( i == skip) {
                     t_start = TIME();
                 }
                 shmem_getmem_nbi(r_buf, s_buf, size, 1);
