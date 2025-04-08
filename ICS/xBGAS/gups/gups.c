@@ -533,8 +533,7 @@ int main(int argc, char **argv)
   // }
 
   TotalMemOpt = 65536;
-  // NumUpdatesOpt = 10;
-  NumUpdatesOpt = 4;
+  NumUpdatesOpt = 10000;
 
   xbrtime_init();
   SHMEMRandomAccess();
