@@ -40,8 +40,10 @@ void print_data_pgas(int rank, int full, int size, double avg_time,
 
 #define MESSAGE_ALIGNMENT               8
 #define MESSAGE_ALIGNMENT_MR            (1 << 12)
-#define MAX_MESSAGE_SIZE                (1 << 14)
-#define MAX_MSG_SIZE_PT2PT              (1 << 14)
+#define MAX_MESSAGE_SIZE                (1 << 16)
+#define MAX_MSG_SIZE_PT2PT              (1 << 16)
+#define MAX_MESSAGE_SIZE_MORE           (1 << 20)
+#define MAX_MSG_SIZE_PT2PT_MORE         (1 << 20)
 #define LARGE_MESSAGE_SIZE              8192
 #define OSHM_LOOP_SMALL                 1000
 #define OSHM_LOOP_LARGE                 100

@@ -1,4 +1,4 @@
-#define BENCHMARK "OSU OpenSHMEM Get_nb Test"
+#define BENCHMARK "OSU OpenSHMEM Get Test"
 
 /*
  * For detailed copyright and licensing information, please refer to the
@@ -6,33 +6,37 @@
  */
 
 /*
-# OSU OpenSHMEM Get_nb Test
+# OSU OpenSHMEM Get Test
 # Size           Latency (us)
----------1                   1.225
----------2                   1.219
----------4                   1.218
----------8                   1.218
---------16                   1.219
---------32                   1.219
---------64                   1.218
--------128                   1.219
--------256                   1.218
--------512                   1.218
-------1024                   1.219
-------2048                   1.219
-------4096                   1.260
-------8192                   1.296
------16384                   1.485
------32768                   2.039
------65536                   2.707
+---------1                   0.805
+---------2                   0.804
+---------4                   0.804
+---------8                   0.804
+--------16                   0.804
+--------32                   0.804
+--------64                   0.804
+-------128                   0.804
+-------256                   0.804
+-------512                   0.804
+------1024                   0.804
+------2048                   0.804
+------4096                   0.844
+------8192                   0.868
+-----16384                   1.046
+-----32768                   1.307
+-----65536                   2.093
+----131072                   8.698
+----262144                  38.441
+----524288                  74.691
 */
+
 
 #include <xbrtime.h>
 #include "xbgas_osu_util.h"
 
-int loop = 10;
-int warmup = 5;
 
+int loop = 2;
+int warmup = 1;
 
 int main(int argc, char *argv[])
 {
@@ -44,14 +48,14 @@ int main(int argc, char *argv[])
     xbrtime_init();
     myid = xbrtime_mype();
     numprocs = xbrtime_num_pes();
-
+    
     if (numprocs != 2) {
         if (myid == 0) {
             printf("This test requires exactly two processes\n");
         }
-
         return EXIT_FAILURE;
     }
+
 
     /**************Allocating Memory*********************/
 
@@ -65,7 +69,7 @@ int main(int argc, char *argv[])
         printf("%-*s%*s", 10, "# Size", FIELD_WIDTH, "Latency (us)\n");
     }
 
-    for (size = 1; size <= MAX_MSG_SIZE_PT2PT; size <<= 1) {
+    for (size = MAX_MSG_SIZE_PT2PT; size <= MAX_MSG_SIZE_PT2PT_MORE; size <<= 1) {
         /* touch the data */
         for (i = 0; i < size; i++) {
             s_buf[i] = 'a';
@@ -79,8 +83,7 @@ int main(int argc, char *argv[])
                 if ( i == warmup) {
                     t_start = TIME();
                 }
-                xbrtime_getmem_nbi(r_buf, s_buf, size, 1);
-                xbrtime_quiet();
+                xbrtime_getmem(r_buf, s_buf, size, 1);
             }
 
             t_end = TIME();
@@ -102,3 +105,4 @@ int main(int argc, char *argv[])
 
     return EXIT_SUCCESS;
 }
+
