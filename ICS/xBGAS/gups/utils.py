@@ -80,7 +80,7 @@ class Config:
       "machine"            : "[0:RV64GC_Xbgas]",            # Machine type
       "memCost"            : "[0:1:10]",                    # Memory loads required 1-10 cycles
       "enable_xbgas"       : 1,                             # Enable XBGAS support
-      "enable_memH"        : 1,                             # Enable memH support
+      "enableMemH"         : 1,                             # Enable memH support
       "shared_memory_size" : int(self.shared_memory_size),  # Shared memory size
       "splash"             : 0                              # Display the splash message
     })
