@@ -7,7 +7,7 @@ from utils import *
 from sst import merlin
 
 parser = argparse.ArgumentParser(description="xBGAS GUPS simulation script")
-parser.add_argument('--config', '-c', default='sim.cfg', help='Configuration file')
+parser.add_argument('--config', '-c', default='simulation.cfg', help='Configuration file')
 
 args = parser.parse_args()
 cfgFile = args.config
