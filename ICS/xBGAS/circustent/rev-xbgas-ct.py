@@ -101,7 +101,7 @@ for i in range(0, NPES):
   xbgas_cpu.addParams({
     "verbose" : VERBOSE,                          # Verbosity
     "clock" : CLOCK,                              # Clock
-    "program" : "rand_cas.exe",                       # Target executable
+    "program" : "rand_add.exe",                       # Target executable
     "memSize" : MEMSIZE,                          # Memory size in bytes
     "startAddr" : "[0:0x00000000]",               # Starting address for core 0
     "machine" : "[0:RV64GC_Xbgas]",

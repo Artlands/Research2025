@@ -21,7 +21,7 @@ static double RTSEC(void)
    double real_time = 0.0;
  
    if( ELEMS < ITERS ) {
-     printf( "Number of elements is too small for iteration count; increase the number of elements or reduce the iteratoin count." );
+     printf( "Number of elements is too small for iteration count; increase the number of elements or reduce the iteratoin count.\n" );
      return 1;
    }
  
@@ -29,7 +29,7 @@ static double RTSEC(void)
    xbrtime_init();
  
    if ( xbrtime_mype() == 0 ){
-     printf( "XBGAS RAND_ADD TEST. PEs = %d", xbrtime_num_pes() );
+     printf( "XBGAS RAND_ADD TEST. PEs = %d\n", xbrtime_num_pes() );
    }
  
    xbrtime_barrier_all();
@@ -38,7 +38,7 @@ static double RTSEC(void)
    array = (uint64_t *)xbrtime_malloc( ELEMS * sizeof(uint64_t) );
  
    if ( array == NULL ){
-     printf( "Array could not be allocated" );
+     printf( "Array could not be allocated\n" );
      xbrtime_close();
      return 1;
    }
@@ -47,7 +47,7 @@ static double RTSEC(void)
    idx = (uint64_t *)xbrtime_malloc( ITERS * sizeof(uint64_t) );
  
    if ( idx == NULL ){
-     printf( " Idx could not be allocated" );
+     printf( "Idx could not be allocated\n" );
      xbrtime_free( array );
      xbrtime_close();
      return 1;
@@ -57,7 +57,7 @@ static double RTSEC(void)
    target = (int *)(malloc( sizeof( int ) * ITERS ));
  
    if ( target == NULL ){
-     printf( " Target could not be allocated" );
+     printf( "Target could not be allocated\n" );
      xbrtime_free( array );
      xbrtime_free( idx );
      xbrtime_close();
@@ -65,7 +65,7 @@ static double RTSEC(void)
    }
  
    if ( xbrtime_mype() == 0 ) {
-     printf( "Initializing xBGAS data members" );
+     printf( "Initializing xBGAS data members\n" );
    }
  
    xbrtime_barrier_all();
@@ -95,7 +95,7 @@ static double RTSEC(void)
    }
  
    if( xbrtime_mype() == 0 ){
-     printf( "Done initializing XBGAS data members" );
+     printf( "Done initializing XBGAS data members\n" );
    }
  
    xbrtime_barrier_all();
@@ -116,10 +116,10 @@ static double RTSEC(void)
    kams = (double)((xbrtime_num_pes() * ITERS * 1.0e-3) / real_time);
  
    if ( xbrtime_mype() == 0 ){
-     printf( " XBGAS Atomic RAND ADD Test: Complete " );
-     printf( " Total iterations: %d ", ITERS * xbrtime_num_pes() );
-     printf( " Time: %.6f seconds ", real_time);
-     printf( " KAMS: %.9f Kilo AMOs/second", kams );
+     printf( "XBGAS Atomic RAND ADD Test: Complete!\n" );
+     printf( "Total iterations: %d\n", ITERS * xbrtime_num_pes() );
+     printf( "Time: %.9f seconds\n", real_time);
+     printf( "KAMS: %.6f Kilo AMOs/second\n", kams );
    }
  
    xbrtime_close();
