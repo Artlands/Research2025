@@ -2,7 +2,9 @@
 #include <inttypes.h>
 #include "xbrtime.h"
 #include "dataset1.h"
-#include "idx1.h"
+
+#define ITERS 1000
+#define STRIDE 1
 
 static double RTSEC(void)
 {
@@ -16,12 +18,12 @@ static double RTSEC(void)
 int main()
 {
   uint64_t *array;
-  uint64_t *idx;
+  // uint64_t *idx;
   int *target;
   double real_time = 0.0;
 
   if( ELEMS < ITERS ) {
-    printf( "Number of elements is too small for iteration count; increase the number of elements or reduce the iteratoin count." );
+    printf( "Number of elements is too small for iteration count; increase the number of elements or reduce the iteratoin count.\n" );
     return 1;
   }
 
@@ -29,7 +31,7 @@ int main()
   xbrtime_init();
 
   if ( xbrtime_mype() == 0 ){
-    printf( "XBGAS RAND_ADD TEST. PEs = %d", xbrtime_num_pes() );
+    printf( "XBGAS STRIDEN_CAS TEST. PEs = %d\n", xbrtime_num_pes() );
   }
 
   xbrtime_barrier_all();
@@ -38,17 +40,7 @@ int main()
   array = (uint64_t *)xbrtime_malloc( ELEMS * sizeof(uint64_t) );
 
   if ( array == NULL ){
-    printf( "Array could not be allocated" );
-    xbrtime_close();
-    return 1;
-  }
-
-  // idx resides in symmetric heap space
-  idx = (uint64_t *)xbrtime_malloc( ITERS * sizeof(uint64_t) );
-
-  if ( idx == NULL ){
-    printf( " Idx could not be allocated" );
-    xbrtime_free( array );
+    printf( "Array could not be allocated\n" );
     xbrtime_close();
     return 1;
   }
@@ -57,15 +49,14 @@ int main()
   target = (int *)(malloc( sizeof( int ) * ITERS ));
 
   if ( target == NULL ){
-    printf( " Target could not be allocated" );
+    printf( "Target could not be allocated\n" );
     xbrtime_free( array );
-    xbrtime_free( idx );
     xbrtime_close();
     return 1;
   }
 
   if ( xbrtime_mype() == 0 ) {
-    printf( "Initializing xBGAS data members" );
+    printf( "Initializing xBGAS data members\n" );
   }
 
   xbrtime_barrier_all();
@@ -86,29 +77,27 @@ int main()
     }
   }
 
-  // Setup the Idx and array values
-  for( unsigned i=0; i<ITERS; i++ ){
-    idx[i] = input_idx[i];
-  }
+
   for( unsigned i=0; i<ELEMS; i++ ){
     array[i] = input_data[i];
   }
 
   if( xbrtime_mype() == 0 ){
-    printf( "Done initializing XBGAS data members" );
+    printf( "Done initializing XBGAS data members\n" );
   }
 
   xbrtime_barrier_all();
 
   double kams = 0.0;
   uint64_t start = 0;
+  uint64_t idx = 0;
 
   real_time = -RTSEC();
 
-  // Start the RAND_CAS test
+  // Start the STRIDEN_CAS test
   for( unsigned i=0; i<ITERS; i++ ){
-    xbrtime_long_get((long *)(&start), (long *)(&idx[i]), 1, target[i]);
-    start = (uint64_t) xbrtime_long_atomic_compare_swap((long *)(&array[start]), (long)(0x00), (long)(0x00), target[i]);
+    start = (uint64_t) xbrtime_long_atomic_compare_swap((long *)(&array[idx]), (long)(0x00), (long)(0x00), target[i]);
+    idx += STRIDE;
   }
 
   real_time = +RTSEC();
@@ -116,12 +105,12 @@ int main()
   kams = (double)((xbrtime_num_pes() * ITERS * 1.0e-3) / real_time);
 
   if ( xbrtime_mype() == 0 ){
-    printf( " XBGAS Atomic RAND CAS Test: Complete " );
-    printf( " Total iterations: %d ", ITERS * xbrtime_num_pes() );
-    printf( " Time: %.6f seconds ", real_time);
-    printf( " KAMS: %.9f Kilo AMOs/second", kams );
+    printf( "XBGAS Atomic STRIDEN CAS Test: Complete!\n" );
+    printf( "Total iterations: %d\n", ITERS * xbrtime_num_pes() );
+    printf( "Time: %.9f seconds\n", real_time);
+    printf( "KAMS: %.6f Kilo AMOs/second\n", kams );
   }
-
+  xbrtime_free( array );
   xbrtime_close();
 
 }
