@@ -67,9 +67,18 @@ int main(int argc, char *argv[])
                 if ( i == warmup) {
                     t_start = TIME();
                 }
-                // xbrtime_getmem(r_buf, s_buf, size, 1);
-                for (int j = 0; j < size; j++) {
-                    r_buf[j] = xbrtime_char_g(&s_buf[j], 1);
+                if (size == 1) {
+                    r_buf[0] = xbrtime_uint8_g((uint8_t *)&s_buf[0], 1);
+                } else if (size == 2) {
+                    r_buf[0] = xbrtime_uint16_g((uint16_t *)&s_buf[0], 1);
+                } else if (size == 4) {
+                    r_buf[0] = xbrtime_uint32_g((uint32_t *)&s_buf[0], 1);
+                } else if (size == 8) {
+                    r_buf[0] = xbrtime_uint64_g((uint64_t *)&s_buf[0], 1);
+                } else if (size > 8) {
+                    for (int j = 0; j < size; j += 8) {
+                        r_buf[j] = xbrtime_uint64_g((uint64_t *)&s_buf[j], 1);
+                    }
                 }
             }
 
