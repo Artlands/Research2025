@@ -5,48 +5,6 @@
  * copyright file COPYRIGHT in the top level directory.
  */
 
- /* WITH FENCE AFTER PUT
-# OSU OpenSHMEM Put Message Rate (MB/s) Test - 100ns
-# Size                    MB/s
----------1                   0.990
----------2                   2.012
----------4                   4.104
----------8                   8.345
---------16                  16.564
---------32                  32.151
---------64                  66.256
--------128                 132.484
--------256                 264.967
--------512                 529.589
-------1024                1058.719
-------2048                2114.229
-------4096                3069.021
-------8192                4587.493
------16384                5364.254
------32768                6300.403
------65536                6656.584
-
-# OSU OpenSHMEM Put Message Rate (MB/s) Test - 200ns
-# Size                    MB/s
----------1                   0.684
----------2                   1.375
----------4                   2.785
----------8                   5.691
---------16                  11.210
---------32                  21.965
---------64                  44.839
--------128                  89.678
--------256                 179.331
--------512                 358.608
-------1024                 716.796
-------2048                1432.120
-------4096                2280.356
-------8192                3644.910
------16384                4657.228
------32768                5787.037
------65536                6358.087
-*/
-
 #include <xbrtime.h>
 #include "xbgas_osu_util.h"
 
@@ -125,7 +83,6 @@ double message_rate(struct pe_vars v, char *buffer, unsigned long size,
         for (i = 0, offset = 0; i < iterations; i++, offset += size) {
             xbrtime_putmem(&buffer[offset], &buffer[offset], size, v.nxtpe);
         }
-        xbrtime_quiet();
         end = TIME();
         
         total = ((double)end - (double)begin ); // us

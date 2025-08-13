@@ -4,7 +4,7 @@
 #SBATCH --ntasks-per-node=32      # Number of tasks per node
 #SBATCH --time=04:00:00           # Time limit (hh:mm:ss)
 #SBATCH --output=results/gups_%A.out     # Standard output log (%j expands to job ID)
-#SBATCH --partition=nocona        # Partition to submit to (adjust based on your system)
+#SBATCH --partition=zen4        # Partition to submit to (adjust based on your system)
 
 export OMPI_MCA_btl_base_warn_component_unused=0
 export OMPI_MCA_pml="ob1"

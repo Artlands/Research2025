@@ -3,10 +3,13 @@ import sst
 import sys
 import math
 import argparse
+
+# Add /mnt/REPACSS/home/li29729/Research2025/xBGAS/circustent to the default path
+sys.path.append('/mnt/REPACSS/home/li29729/Research2025/xBGAS/circustent')
 from utils import *
 from sst import merlin
 
-parser = argparse.ArgumentParser(description="xBGAS GUPS simulation script")
+parser = argparse.ArgumentParser(description="xBGAS CircusTent simulation script")
 parser.add_argument('--config', '-c', default='simulation.cfg', help='Configuration file')
 
 args = parser.parse_args()

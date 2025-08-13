@@ -5,16 +5,6 @@
  * copyright file COPYRIGHT in the top level directory.
  */
 
-/*
-# OSU OpenSHMEM Get Test - 100ns
-# Size           Latency (us)
-
-# OSU OpenSHMEM Get Test - 200ns
-# Size           Latency (us)
-
-*/
-
-
 #include <xbrtime.h>
 #include "xbgas_osu_util.h"
 

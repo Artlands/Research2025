@@ -5,16 +5,6 @@
  * copyright file COPYRIGHT in the top level directory.
  */
 
-/*
-# OSU OpenSHMEM Get Message Rate (MB/s) Test - 100ns
-# Size                    MB/s
-
-
-# OSU OpenSHMEM Get Message Rate (MB/s) Test - 200ns
-# Size                    MB/s
-
-*/
-
 #include <xbrtime.h>
 #include "xbgas_osu_util.h"
 

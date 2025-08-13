@@ -33,9 +33,10 @@ if len(sys.argv) != 3:
 
 PROGRAM = sys.argv[1]
 NPES = int(sys.argv[2])
-CLOCK = "2.5GHz"  
+CLOCK = "2.25GHz"  
 MEMSIZE = 1024*1024*1024
 SHARED_MEM_SIZE = 1024*1024*64
+bandwidth = "100GB/s"
 
 
 memctrl_params = {
@@ -53,7 +54,7 @@ l1cache_params = {
   "associativity" : "4",
   "cache_line_size" : "64",
   "L1" : "1",
-  "cache_size" : "16KiB"
+  "cache_size" : "32kiB"
 }
 
 l2cache_params = {
@@ -65,7 +66,7 @@ l2cache_params = {
   "associativity" : "8",
   "cache_line_size" : "64",
   "L1" : "0",  # Not an L1
-  "cache_size" : "128KiB"
+  "cache_size" : "1MiB"
 }
 
 mem_params = {
@@ -74,9 +75,9 @@ mem_params = {
 }
 
 net_params = {
-  "input_buf_size" : "512B",
-  "output_buf_size" : "512B",
-  "link_bw" : "25GB/s"
+  "input_buf_size" : "4KiB",
+  "output_buf_size" : "4KiB",
+  "link_bw" : bandwidth
 }
 
 # setup the router
@@ -85,7 +86,7 @@ router.setSubComponent("topology", "merlin.singlerouter")
 router.addParams(net_params)
 
 router.addParams({
-    "xbar_bw" : "25GB/s",
+    "xbar_bw" : bandwidth,
     "flit_size" : "32B",
     "num_ports" : str(NPES),
     "id" : 0
