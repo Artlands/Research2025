@@ -18,8 +18,7 @@ EXES = $(SRCS:.c=.exe)
 all:$(EXES)
 
 %.exe: %.o $(UTIL_OBJ)
-	$(CC) $(CFLAGS) -o $@ $^ -L$(UCX_HOME)/lib -I$(UCX_HOME)/include -lucs
-
+	$(CC) $(CFLAGS) -o $@ $^
 # Rule to compile source files into object files
 %.o:%.c
 	$(CC) $(CFLAGS) -c -o $@ $<

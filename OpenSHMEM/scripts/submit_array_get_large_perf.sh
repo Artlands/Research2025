@@ -4,7 +4,7 @@
 #SBATCH --ntasks-per-node=1       # Number of tasks per node (1 PE per node)
 #SBATCH --time=00:10:00           # Time limit (hh:mm:ss)
 #SBATCH --output=results/detail_large/get_mr_%a.out     # Standard output log (%j expands to job ID)
-#SBATCH --partition=nocona        # Partition to submit to (adjust based on your system)
+#SBATCH --partition=zen4        # Partition to submit to (adjust based on your system)
 #SBATCH --array=0-9              # Array indices (0 to 10 for 11 message sizes)
 #SBATCH --exclusive
 
