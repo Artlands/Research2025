@@ -8,6 +8,8 @@
 #SBATCH --exclusive
 #SBATCH --array=0-7             # Array job indices (adjust based on the number of applications)
 
+module load openmpi
+
 # Define an array of application executables
 applications=("osu_oshm_get.exe" "osu_oshm_put.exe" "osu_oshm_get_nb.exe" "osu_oshm_put_nb.exe" "osu_oshm_get_mr.exe" "osu_oshm_put_mr.exe" "osu_oshm_get_mr_nb.exe" "osu_oshm_put_mr_nb.exe")
 
