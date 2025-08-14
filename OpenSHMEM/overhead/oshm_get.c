@@ -55,35 +55,29 @@ int main(int argc, char **argv) {
 
     shmem_barrier_all(); // Ensure synchronization
 
-    struct timespec start, end;
+    struct timeval start, end;
     
     if (me == 0) {
                 
-        // gettimeofday(&start, NULL);
-        clock_gettime(CLOCK_MONOTONIC, &start);
+        gettimeofday(&start, NULL);
         
         // PE 0 sends data to PE 1
         UCS_PROFILE_CODE("overhead_profile", {
             shmem_getmem(recv_buf, send_buf, nelems, 1);
         });
 
-        // gettimeofday(&end, NULL);
-        clock_gettime(CLOCK_MONOTONIC, &end);
+        gettimeofday(&end, NULL);
+        total_time += get_elapsed_time(start, end);
 
-        // total_time += get_elapsed_time(start, end);
-
-        // printf("Start: %ld.%06ld, End: %ld.%06ld\n", start.tv_sec, start.tv_usec, end.tv_sec, end.tv_usec);
-
-        double elapsed_us = (end.tv_sec - start.tv_sec) * 1e6 + (end.tv_nsec - start.tv_nsec) / 1e3;
-        printf("Elapsed time: %.3f us\n", elapsed_us);
+        printf("Start: %ld.%06ld, End: %ld.%06ld\n", start.tv_sec, start.tv_usec, end.tv_sec, end.tv_usec);
 
     }
 
-    // if (me == 0) {
-    //     double rate = (nelems / (1024.0 * 1024.0)) / total_time; // Rate in MB/s
-    //     printf("Put Message Size: %zu bytes, Total Time: %.6f s, Rate: %.6f MB/s\n",
-    //            nelems, total_time, rate);
-    // }
+    if (me == 0) {
+        double rate = (nelems / (1024.0 * 1024.0)) / total_time; // Rate in MB/s
+        printf("Put Message Size: %zu bytes, Total Time: %.6f s, Rate: %.6f MB/s\n",
+               nelems, total_time, rate);
+    }
 
     shmem_free(send_buf);
     shmem_free(recv_buf);

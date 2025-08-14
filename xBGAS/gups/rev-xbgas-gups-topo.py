@@ -3,6 +3,9 @@ import sst
 import sys
 import math
 import argparse
+
+sys.path.append('/mnt/REPACSS/home/li29729/Research2025/xBGAS/gups')
+
 from utils import *
 from sst import merlin
 

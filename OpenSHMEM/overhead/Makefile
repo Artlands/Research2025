@@ -11,7 +11,7 @@ all: $(TARGETS)
 
 # Build target
 $(TARGETS): %.exe: %.c
-	$(CC) $(CFLAGS) -o $@ $< -L$(UCX_HOME)/lib -I$(UCX_HOME)/include -lucp -luct -lucs
+	$(CC) $(CFLAGS) -o $@ $< -lucp -luct -lucs
 
 # Clean up build files
 clean:

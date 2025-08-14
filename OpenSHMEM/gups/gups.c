@@ -196,7 +196,7 @@ int SHMEMRandomAccess(void)
     }
 
     sAbort = 0;
-    HPCC_Table = shmem_malloc((Remainder > 0 ? (MinLocalTableSize + 1) : LocalTableSize)
+    HPCC_Table = (uint64_t*)shmem_malloc((Remainder > 0 ? (MinLocalTableSize + 1) : LocalTableSize)
                               * sizeof(uint64_t));
     if (!HPCC_Table)
         sAbort = 1;
@@ -251,9 +251,9 @@ int SHMEMRandomAccess(void)
 
     shmem_barrier_all();
 
-    // shmem_barrier_all();
     RealTime = -RTSEC();
-
+    shmem_barrier_all();
+    
     UpdateTable(HPCC_Table,
                 TableSize,
                 MinLocalTableSize,
@@ -262,9 +262,8 @@ int SHMEMRandomAccess(void)
                 ProcNumUpdates,
                 0);
 
-    RealTime += RTSEC();
-    
     shmem_barrier_all();
+    RealTime += RTSEC();
 
     if (MyProc == 0) {
         SHMEMRandomAccess_time = RealTime;

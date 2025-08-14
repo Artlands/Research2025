@@ -8,10 +8,6 @@
 #SBATCH --array=0-11                                    # Array indices
 #SBATCH --exclusive
 
-
-export UCX_NET_DEVICES=ib0
-
-
 # Define the message sizes (in bytes)
 MESSAGE_SIZES=( 1 4 16 64 256 1024 4096 16384 65536 262144 1048576 4194304 ) # 
 
@@ -23,13 +19,12 @@ if [ "$SLURM_ARRAY_TASK_ID" -ge "${#MESSAGE_SIZES[@]}" ]; then
     exit 1
 fi
 
-DEST_DIR=/mnt/REPACSS/home/li29729/Research2025/OpenSHMEM/overhead/results
+DEST_DIR=./results/get-profiling
 
 mkdir -p "$DEST_DIR"
 
 # Profile with UCX
-UCX_PROFILE_MODE=log,accum UCX_PROFILE_FILE=$DEST_DIR/ucx_$MESSAGE_SIZE.prof \
-  oshrun -np 2 --map-by ppr:1:node /mnt/REPACSS/home/li29729/Research2025/OpenSHMEM/overhead/oshm_get.exe $MESSAGE_SIZE
+UCX_PROFILE_MODE=log,accum UCX_PROFILE_FILE=$DEST_DIR/ucx_$MESSAGE_SIZE.prof srun oshm_get.exe $MESSAGE_SIZE
 
 ucx_read_profile $DEST_DIR/ucx_$MESSAGE_SIZE.prof > $DEST_DIR/ucx_$MESSAGE_SIZE.txt
 
